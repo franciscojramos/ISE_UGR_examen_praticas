@@ -1,0 +1,3146 @@
+[
+  {
+    "pregunta": "¿Qué afirmación sobre RAID es correcta?",
+    "opciones": {
+      "a": "El administrador puede acceder al RAID como una sola unidad de almacenamiento.",
+      "b": "El administrador puede acceder a los discos que componen el RAID de forma individual.",
+      "c": "El sistema operativo gestiona automáticamente el funcionamiento del RAID.",
+      "d": "Todas las anteriores son correctas."
+    },
+    "respuesta": "d",
+    "explicacion": {
+      "concepto": "Concepto de RAID",
+      "porque_correcta": "Las tres sentencias a, b y c describen características reales de muchos niveles de RAID; por eso la opción global es la única enteramente cierta.",
+      "porque_erroneas": {
+        "a": "Es correcta pero no contempla el resto de atributos.",
+        "b": "También es correcta, pero no exclusiva.",
+        "c": "Es correcta, pero incompleta como respuesta individual."
+      },
+      "resumen": "Todas las sentencias describen aspectos reales del funcionamiento de un RAID, por lo que la opción que las agrupa es la correcta."
+    }
+  },
+  {
+    "pregunta": "¿Qué modos de red de VirtualBox permiten emplear el DHCP que ofrece el propio VirtualBox?",
+    "opciones": {
+      "a": "Solo NAT.",
+      "b": "Solo Host‑Only.",
+      "c": "Bridge y NatNetwork.",
+      "d": "NAT y Host‑Only."
+    },
+    "respuesta": "d",
+    "explicacion": {
+      "concepto": "Modos de red en VirtualBox",
+      "porque_correcta": "En NAT el motor de VirtualBox actúa como router y ofrece DHCP; Host‑Only crea una red privada virtual con servidor DHCP opcional.",
+      "porque_erroneas": {
+        "a": "NAT sí tiene DHCP, pero falta Host‑Only.",
+        "b": "Host‑Only puede tener DHCP, pero falta NAT.",
+        "c": "Bridge no incluye DHCP; NatNetwork es otro modo no usado."
+      },
+      "resumen": "Los dos modos que exponen servicio DHCP interno son NAT y Host‑Only."
+    }
+  },
+  {
+    "pregunta": "Tras ampliar de 4 GiB a 6 GiB un volumen lógico (LV), ¿qué tamaño libre mostrará el comando df ‑h antes de redimensionar el sistema de ficheros?",
+    "opciones": {
+      "a": "Aproximadamente 4 GiB exactos.",
+      "b": "Algo menos de 4 GiB.",
+      "c": "Aproximadamente 6 GiB.",
+      "d": "Algo más de 6 GiB."
+    },
+    "respuesta": "b",
+    "explicacion": {
+      "concepto": "Secuencia de ampliación LV + filesystem",
+      "porque_correcta": "Hasta que no se ejecuta resize2fs/el comando de grow del FS, df sigue mostrando el tamaño original (algo menos de 4 GiB por el espacio de metadatos).",
+      "porque_erroneas": {
+        "a": "Sería cierto si 4 GiB fuesen exactos; df suele mostrar un pelín menos.",
+        "c": "El sistema de ficheros no crece automáticamente con el LV.",
+        "d": "Ni el LV ni el FS llegarán a más de 6 GiB tras ampliarlo a 6."
+      },
+      "resumen": "df informa del tamaño del sistema de ficheros, no del LV; hasta reajustarlo, sigue rondando los 4 GiB iniciales."
+    }
+  },
+  {
+    "pregunta": "Un Volume Group (VG) agrupa discos.",
+    "opciones": {
+      "a": "Verdadero.",
+      "b": "Falso.",
+      "c": "Solo agrupa particiones LUKS.",
+      "d": "Solo agrupa RAIDs."
+    },
+    "respuesta": "b",
+    "explicacion": {
+      "concepto": "Arquitectura LVM",
+      "porque_correcta": "Un VG agrupa Physical Volumes (PV), que pueden ser discos completos, particiones o dispositivos LUKS, pero el enunciado no es correcto tal cual.",
+      "porque_erroneas": {
+        "a": "Simplifica en exceso y resulta inexacta.",
+        "c": "No se limita a particiones cifradas.",
+        "d": "Los RAIDs pueden formar parte de un PV, pero no es condición."
+      },
+      "resumen": "El VG agrupa PV; decir que agrupa 'discos' sin matices es incorrecto."
+    }
+  },
+  {
+    "pregunta": "RAID son las siglas de…",
+    "opciones": {
+      "a": "Relevant Array of Independent Disks.",
+      "b": "Redundant Array of Inexpensive Disks.",
+      "c": "Random Access Identical Disks.",
+      "d": "Resilient Architecture of Integrated Drives."
+    },
+    "respuesta": "b",
+    "explicacion": {
+      "concepto": "Definición de RAID",
+      "porque_correcta": "La denominación histórica es “Redundant Array of Inexpensive Disks”.",
+      "porque_erroneas": {
+        "a": "Cambia 'Redundant' por 'Relevant' y 'Inexpensive' por 'Independent'.",
+        "c": "No coincide con la terminología oficial ni su sentido.",
+        "d": "Frase inventada que no corresponde a la sigla."
+      },
+      "resumen": "RAID nació para describir matrices redundantes de discos ‘baratos’."
+    }
+  },
+  {
+  "pregunta": "¿Qué línea de /etc/fstab montaría el volumen lógico ssd-home (formato XFS) en /home con las opciones por defecto?",
+  "opciones": {
+    "a": "/dev/mapper/ssd-home  /home  xfs  defaults  0  2",
+    "b": "/dev/ssd-home         /home  ext4 defaults   0  2",
+    "c": "LABEL=ssd-home        /home  xfs  nofail     0  0",
+    "d": "/home                 /dev/mapper/ssd-home xfs defaults 2 0"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Sintaxis de fstab",
+    "porque_correcta": "Los seis campos (dispositivo, punto de montaje, tipo, opciones, dump, fsck-pass) están en el orden y valores típicos.",
+    "porque_erroneas": {
+      "b": "Usa ext4 cuando el volumen está en XFS.",
+      "c": "La opción nofail no es necesaria y cambia la comprobación fsck.",
+      "d": "Intercambia dispositivo y punto de montaje."
+    },
+    "resumen": "La entrada ‘a’ sigue la sintaxis estándar para un XFS no raíz."
+  }
+},
+{
+  "pregunta": "Al arrancar un Ubuntu Server cuya netplan deja DHCP activado en eth0 y deshabilita eth1, ¿qué interfaces aparecerán activas?",
+  "opciones": {
+    "a": "Solo eth0 además del loopback.",
+    "b": "Solo eth1 además del loopback.",
+    "c": "eth0 y eth1.",
+    "d": "Ninguna, salvo el loopback."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Netplan/Networkd en Ubuntu",
+    "porque_correcta": "La YAML de netplan marca eth0 con DHCP on, así que se levanta; eth1 se marca como disable: true, por lo que queda inactiva.",
+    "porque_erroneas": {
+      "b": "eth1 está deshabilitada explícitamente.",
+      "c": "Solo la interfaz habilitada (eth0) se activa.",
+      "d": "Al menos una interfaz de red externa (eth0) queda activa."
+    },
+    "resumen": "Netplan obedece al ajuste per-interface; solo eth0 se levanta."
+  }
+},
+{
+  "pregunta": "¿Qué comando se puede usar en Ubuntu (sin paquetes extra) para listar las interfaces de red disponibles?",
+  "opciones": {
+    "a": "ip link show",
+    "b": "ifconfig -a",
+    "c": "lsif",
+    "d": "nmcli dev status"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Herramientas de red (iproute2)",
+    "porque_correcta": "El paquete iproute2 viene instalado por defecto y ‘ip link show’ lista todas las NIC.",
+    "porque_erroneas": {
+      "b": "ifconfig pertenece a net-tools, no se instala por defecto.",
+      "c": "lsif no es un comando estándar.",
+      "d": "nmcli pertenece a NetworkManager, no presente en server mínimo."
+    },
+    "resumen": "ip link es la vía moderna y preinstalada para consultar interfaces."
+  }
+},
+{
+  "pregunta": "«Un Volume Group agrupa particiones» — esta afirmación es:",
+  "opciones": {
+    "a": "Verdadera.",
+    "b": "Falsa.",
+    "c": "Solo cierta si las particiones están cifradas.",
+    "d": "Solo cierta si son RAID."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "LVM: PV, VG, LV",
+    "porque_correcta": "Los Physical Volumes suelen ser particiones; al agrupar PV se crea el VG.",
+    "porque_erroneas": {
+      "b": "Sí es verdadero en la práctica habitual.",
+      "c": "No exige cifrado.",
+      "d": "No exige RAID."
+    },
+    "resumen": "Aunque un PV *puede* ser un disco entero, lo común son particiones, así que la frase se considera correcta."
+  }
+},
+{
+  "pregunta": "Tras la instalación por defecto de CentOS Stream, ¿cuántas interfaces de red externas arrancan activas?",
+  "opciones": {
+    "a": "Ninguna, salvo el loopback.",
+    "b": "Todas las detectadas se activan automáticamente.",
+    "c": "Solo la primera tarjeta (ens0/eth0).",
+    "d": "Depende del driver: si es Intel se activan todas."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "NetworkManager/CentOS instalación mínima",
+    "porque_correcta": "El instalador deja las NIC en ‘disconnected’ a menos que el usuario las habilite.",
+    "porque_erroneas": {
+      "b": "Requiere marcar la casilla ‘Conectar automáticamente’.",
+      "c": "No se activa ninguna por defecto.",
+      "d": "No depende del fabricante sino de la configuración."
+    },
+    "resumen": "CentOS mínimo arranca solo con loopback, NICs externas quedan abajo."
+  }
+},
+{
+  "pregunta": "«Un contenedor Linux solo puede ejecutarse sobre un kernel Linux»",
+  "opciones": {
+    "a": "Verdadero.",
+    "b": "Falso, puede correr sobre cualquier kernel con Docker.",
+    "c": "Falso, porque usa emulación completa.",
+    "d": "Verdadero solo en arquitecturas ARM."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Arquitectura de contenedores",
+    "porque_correcta": "Los contenedores comparten llamadas al kernel anfitrión; sin kernel Linux, un contenedor Linux no funciona.",
+    "porque_erroneas": {
+      "b": "Docker Desktop usa VM ligera con kernel Linux para cumplir esa condición.",
+      "c": "No hay emulación de kernel, solo aislamiento de namespaces/cgroups.",
+      "d": "No depende de la arquitectura, sino del SO base."
+    },
+    "resumen": "El aislamiento tipo contenedor requiere compatibilidad nativa con el kernel."
+  }
+},
+{
+  "pregunta": "¿Qué formato de sistema de archivos se crea por defecto para /boot en CentOS Stream 9?",
+  "opciones": {
+    "a": "ext4",
+    "b": "xfs",
+    "c": "btrfs",
+    "d": "vfat"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "/boot en RHEL/CentOS",
+    "porque_correcta": "Anaconda sigue asignando ext4 a /boot por compatibilidad con GRUB 2.",
+    "porque_erroneas": {
+      "b": "XFS se usa para / y /home pero no para /boot.",
+      "c": "btrfs está deshabilitado de forma oficial.",
+      "d": "vfat sólo se usa en particiones EFI (/boot/efi)."
+    },
+    "resumen": "/boot mantiene ext4 por fiabilidad y compatibilidad de arranque."
+  }
+},
+{
+  "pregunta": "Tras ampliar un LV basado en ext4, ¿qué comando redimensiona el sistema de ficheros para usar el nuevo espacio?",
+  "opciones": {
+    "a": "resize2fs /dev/mapper/vg-lvol",
+    "b": "xfs_growfs /home",
+    "c": "lvextend -r -L+2G vg/lvol",
+    "d": "e2label /dev/mapper/vg-lvol"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Resize FS ext4",
+    "porque_correcta": "resize2fs ajusta ext3/ext4 al nuevo tamaño del dispositivo.",
+    "porque_erroneas": {
+      "b": "xfs_growfs es para XFS, no ext4.",
+      "c": "lvextend -r haría ambas cosas, pero la pregunta pide el comando específico de FS.",
+      "d": "e2label solo cambia la etiqueta."
+    },
+    "resumen": "Con ext4 el utilitario estándar es resize2fs."
+  }
+},
+{
+  "pregunta": "«Un Volume Group agrupa RAIDs» — esta afirmación es:",
+  "opciones": {
+    "a": "Verdadera.",
+    "b": "Falsa.",
+    "c": "Solo cierta en RAID 1.",
+    "d": "Solo cierta en RAID 5."
+  },
+  "respuesta": "b",
+  "explicacion": {
+    "concepto": "Relación LVM vs RAID",
+    "porque_correcta": "Un VG agrupa PV, no necesariamente conjuntos RAID; puede usar discos simples.",
+    "porque_erroneas": {
+      "a": "No hace falta RAID para crear un VG.",
+      "c": "Igualmente falso: el VG no ‘sabe’ del nivel.",
+      "d": "Idem anterior."
+    },
+    "resumen": "LVM y RAID son capas distintas; un VG no ‘agrupa RAIDs’ de forma obligatoria."
+  }
+},
+{
+  "pregunta": "Para levantar la interfaz enp0s3 en CentOS Stream 9 con el esquema tradicional ifup/ifdown, ¿qué comando usarías?",
+  "opciones": {
+    "a": "ifup enp0s3",
+    "b": "ip link set enp0s3 up",
+    "c": "nmcli dev up enp0s3",
+    "d": "netctl start enp0s3"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "ifcfg-rhel scripts heredados",
+    "porque_correcta": "Los scripts ifup/ifdown siguen presentes para compatibilidad con los ficheros ifcfg-*.",
+    "porque_erroneas": {
+      "b": "ip link es genérico pero no ejecuta los scripts de configuración.",
+      "c": "nmcli funciona, pero la pregunta cita explícitamente el esquema ifup.",
+      "d": "netctl pertenece a Arch Linux."
+    },
+    "resumen": "CentOS mantiene ifup/ifdown para administrar perfiles ifcfg."
+  }
+},
+{
+  "pregunta": "¿Qué nivel de RAID se configuró en las prácticas para asegurar redundancia con dos discos idénticos?",
+  "opciones": {
+    "a": "RAID 0 (striping)",
+    "b": "RAID 1 (mirroring)",
+    "c": "RAID 5 (paridad distribuida)",
+    "d": "RAID 10 (1+0)"
+  },
+  "respuesta": "b",
+  "explicacion": {
+    "concepto": "RAID en P1",
+    "porque_correcta": "Se usaron dos discos y se buscaba tolerancia a fallo, por lo que se eligió RAID 1.",
+    "porque_erroneas": {
+      "a": "RAID 0 no ofrece redundancia.",
+      "c": "Requiere al menos tres discos.",
+      "d": "Combina espejo + striping y necesita 4 discos."
+    },
+    "resumen": "Con dos discos y deseo de copia, el nivel apropiado es RAID 1."
+  }
+},
+{
+  "pregunta": "Durante la instalación de Ubuntu Server, ¿dónde se recomienda instalar GRUB para garantizar el arranque del sistema?",
+  "opciones": {
+    "a": "En el MBR del disco principal (/dev/sda).",
+    "b": "En la partición /boot (/dev/sda1).",
+    "c": "En la partición EFI (/dev/sda2).",
+    "d": "No es necesario instalar GRUB."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Instalador GRUB",
+    "porque_correcta": "Grub2 se coloca en el MBR (o GPT-BIOS boot) del disco que la BIOS arranca, típicamente /dev/sda.",
+    "porque_erroneas": {
+      "b": "Instalarlo en la partición /boot no basta para arrancar en BIOS.",
+      "c": "La partición EFI se usa solo en modo UEFI; el escenario descrito es BIOS/MBR.",
+      "d": "Sin gestor de arranque el SO no se cargaría."
+    },
+    "resumen": "El punto seguro es el MBR del primer disco, /dev/sda."
+  }
+},
+{
+  "pregunta": "«Un Volume Group (VG) agrupa Physical Volumes (PV)» — esta afirmación es:",
+  "opciones": {
+    "a": "Verdadera.",
+    "b": "Falsa.",
+    "c": "Verdadera solo si los PV están cifrados.",
+    "d": "Verdadera solo si los PV son RAID."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Jerarquía LVM",
+    "porque_correcta": "El diseño de LVM es PV → VG → LV; el VG es un pool que combina uno o varios PV.",
+    "porque_erroneas": {
+      "b": "Es la definición exacta, por lo que no puede ser falsa.",
+      "c": "El cifrado es irrelevante para LVM.",
+      "d": "No es requisito que los PV sean RAIDs."
+    },
+    "resumen": "Por definición, un VG se forma a partir de PV."
+  }
+},
+{
+  "pregunta": "¿Qué línea en /etc/fstab montaría el sistema de archivos ext4 main-nvar en /var con las opciones por defecto y chequeo de fsck en segundo lugar?",
+  "opciones": {
+    "a": "/dev/mapper/main-nvar  /var  ext4  defaults  0  2",
+    "b": "/dev/main-nvar         /var  ext4  defaults  2  0",
+    "c": "UUID=main-nvar         /var  ext4  nofail    0  0",
+    "d": "/var                   /dev/main-nvar ext4 defaults 0 2"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "fstab ext4",
+    "porque_correcta": "Respeta el orden dispositivo-punto-tipo-opciones-dump-pass y asigna pass=2 para fsck tras la raíz.",
+    "porque_erroneas": {
+      "b": "Intercambia dump y pass.",
+      "c": "Añade nofail y desactiva fsck.",
+      "d": "Invierte dispositivo y punto de montaje."
+    },
+    "resumen": "La opción ‘a’ es la sintaxis correcta y práctica habitual."
+  }
+},
+{
+  "pregunta": "¿Cómo se define GRUB 2 dentro de un sistema GNU/Linux?",
+  "opciones": {
+    "a": "Un gestor de arranque capaz de cargar varios sistemas operativos.",
+    "b": "Un kernel alternativo para sistemas redundantes.",
+    "c": "Un monitor de máquinas virtuales.",
+    "d": "Un servicio systemd responsable del login."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "GRUB 2",
+    "porque_correcta": "GRUB es un boot loader que permite seleccionar y cargar SO distintos o kernels diferentes.",
+    "porque_erroneas": {
+      "b": "No es un kernel.",
+      "c": "No virtualiza hardware.",
+      "d": "No pertenece a systemd ni gestiona logins."
+    },
+    "resumen": "GRUB = gestor de arranque multipropósito."
+  }
+},
+{
+  "pregunta": "Tras editar los ficheros YAML de Netplan en Ubuntu, ¿qué comando aplica la nueva configuración sin reiniciar?",
+  "opciones": {
+    "a": "netplan apply",
+    "b": "systemctl restart network",
+    "c": "nmcli connection reload",
+    "d": "service networking reload"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Netplan CLI",
+    "porque_correcta": "‘netplan apply’ genera los archivos para networkd o NetworkManager y reinicia los servicios necesarios.",
+    "porque_erroneas": {
+      "b": "No existe tal unidad en sistemas con netplan puro.",
+      "c": "nmcli afecta solo si back-end es NetworkManager.",
+      "d": "El script SysV se usa en Debian sin netplan."
+    },
+    "resumen": "La forma oficial es netplan apply."
+  }
+},
+{
+  "pregunta": "¿Para qué sirve el fichero /etc/crypttab en una instalación Linux?",
+  "opciones": {
+    "a": "Indicar qué dispositivos cifrados se deben desbloquear al arrancar.",
+    "b": "Listar los sistemas de archivos a montar tras el arranque.",
+    "c": "Configurar las claves SSH de root.",
+    "d": "Guardar reglas de cortafuegos persistentes."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Discos cifrados LUKS",
+    "porque_correcta": "crypttab asocia el nombre del mapeo, el dispositivo real y la clave para que systemd-cryptsetup lo abra antes de montar fstab.",
+    "porque_erroneas": {
+      "b": "Eso lo define /etc/fstab.",
+      "c": "Las claves SSH viven en /root/.ssh.",
+      "d": "El cortafuegos usa nftables/iptables, no crypttab."
+    },
+    "resumen": "crypttab describe volúmenes cifrados que deben desbloquearse en el arranque."
+  }
+},
+{
+  "pregunta": "Durante la instalación de Ubuntu Server en las prácticas, ¿qué puntos de montaje se crearon explícitamente además de la raíz “/”?",
+  "opciones": {
+    "a": "/home y swap.",
+    "b": "/boot y /tmp.",
+    "c": "/var y /opt.",
+    "d": "Solo la raíz ‘/’ (layout monolítico)."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Esquema de particionado",
+    "porque_correcta": "Se pidió separar los datos de usuario (/home) y habilitar una partición swap independiente.",
+    "porque_erroneas": {
+      "b": "/boot no se separó en la guía y /tmp quedó bajo raíz.",
+      "c": "No se creó ninguna partición para /var ni /opt.",
+      "d": "Se crearon al menos dos montajes adicionales."
+    },
+    "resumen": "La guía recomendaba raíz + home + swap."
+  }
+},
+{
+  "pregunta": "¿Cuál es el identificador de dispositivo que corresponde a la segunda partición del primer disco SATA detectado por el kernel?",
+  "opciones": {
+    "a": "/dev/sda2",
+    "b": "/dev/sdb2",
+    "c": "/dev/hda2",
+    "d": "/dev/vda2"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Convención de nombres Linux",
+    "porque_correcta": "sda = primer disco SCSI/SATA; el sufijo numérico indica la partición.",
+    "porque_erroneas": {
+      "b": "sdb es el segundo disco, no el primero.",
+      "c": "hda se usaba con controladores IDE antiguos.",
+      "d": "vda denota discos virtio, no SATA."
+    },
+    "resumen": "La partición 2 del primer disco SATA es /dev/sda2."
+  }
+},
+{
+  "pregunta": "Con tres discos de 1 TB en un RAID 1 (mirroring triple), ¿qué afirmación es correcta?",
+  "opciones": {
+    "a": "La capacidad útil total es 1 TB y se pueden perder hasta dos discos sin perder datos.",
+    "b": "La capacidad útil total es 3 TB sin tolerancia a fallos.",
+    "c": "La capacidad útil es 2 TB y se puede perder un disco.",
+    "d": "La capacidad útil es 1,5 TB con paridad distribuida."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "RAID 1 con N>2",
+    "porque_correcta": "En RAID 1 todos los discos guardan la misma información; capacidad = tamaño de un disco; se tolera la pérdida de N-1 discos.",
+    "porque_erroneas": {
+      "b": "Describe RAID 0.",
+      "c": "Capacidad y tolerancia incorrectas para RAID 1.",
+      "d": "Confunde con RAID 5."
+    },
+    "resumen": "RAID 1 sacrifica capacidad para ganar redundancia total."
+  }
+},
+{
+  "pregunta": "Para inicializar un volumen lógico de intercambio (swap) con cifrado LUKS antes de usarlo, ¿qué comando se ejecuta?",
+  "opciones": {
+    "a": "cryptsetup luksFormat /dev/vg0/swap",
+    "b": "mkswap -L swap /dev/vg0/swap",
+    "c": "swapon -e /dev/vg0/swap",
+    "d": "crypttab /dev/vg0/swap luks"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Cifrado de swap",
+    "porque_correcta": "‘cryptsetup luksFormat’ prepara el dispositivo con cabecera LUKS.",
+    "porque_erroneas": {
+      "b": "mkswap formatea la swap pero no la cifra.",
+      "c": "swapon activa la swap ya preparada.",
+      "d": "crypttab es un fichero, no un comando."
+    },
+    "resumen": "El paso inicial de cifrado de un bloque es cryptsetup luksFormat."
+  }
+},
+{
+  "pregunta": "¿Qué línea en /etc/fstab montaría el dispositivo /dev/md1 etiquetado r1-nvar (XFS) en /media al arrancar?",
+  "opciones": {
+    "a": "LABEL=r1-nvar   /media  xfs  defaults  0  2",
+    "b": "/dev/md1        /media  ext4 defaults   0  2",
+    "c": "UUID=r1-nvar    /media  xfs  noauto    0  0",
+    "d": "/media         /dev/md1  xfs  defaults  2  0"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "fstab XFS en RAID",
+    "porque_correcta": "Usa la etiqueta, tipo correcto y pass=2 para fsck XFS (aunque XFS no lo usa).",
+    "porque_erroneas": {
+      "b": "Tipo ext4 erróneo.",
+      "c": "noauto impide el montaje al inicio.",
+      "d": "Intercambia campos dispositivo / punto de montaje."
+    },
+    "resumen": "Entrada típica con LABEL, tipo xfs y opciones por defecto."
+  }
+},
+{
+  "pregunta": "Tras añadir un nuevo disco a un VG existente y extender un LV, ¿qué secuencia refleja los pasos correctos para un sistema de archivos ext4?",
+  "opciones": {
+    "a": "pvcreate → vgextend → lvextend → resize2fs",
+    "b": "vgextend → pvcreate → lvextend → resize2fs",
+    "c": "lvextend → pvcreate → vgextend → resize2fs",
+    "d": "pvcreate → lvextend → vgextend → resize2fs"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Ampliación de almacenamiento LVM",
+    "porque_correcta": "Primero se convierte el disco en PV, se añade al VG, se amplía el LV y al final se crece el sistema de ficheros.",
+    "porque_erroneas": {
+      "b": "El PV debe existir antes de vgextend.",
+      "c": "No puedes extender LV antes de ampliar el VG.",
+      "d": "No puedes extender LV antes de vgextend."
+    },
+    "resumen": "El orden respeta dependencias: PV→VG→LV→FS."
+  }
+},
+{
+  "pregunta": "Para crear de cero un nuevo volumen lógico en un disco vacío recién inicializado como PV, ¿qué secuencia de comandos es correcta?",
+  "opciones": {
+    "a": "pvcreate → vgcreate → lvcreate",
+    "b": "vgcreate → pvcreate → lvcreate",
+    "c": "pvcreate → lvcreate → vgcreate",
+    "d": "mkfs → pvcreate → vgcreate"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Creación inicial LVM",
+    "porque_correcta": "Se necesita primero el PV, luego el VG y por último el LV.",
+    "porque_erroneas": {
+      "b": "No se puede crear VG sin PV previo.",
+      "c": "lvcreate requiere VG ya existente.",
+      "d": "mkfs se hará después sobre el LV."
+    },
+    "resumen": "Orden jerárquico: PV → VG → LV."
+  }
+},
+{
+  "pregunta": "¿Conviene cifrar la partición de intercambio (swap) en un equipo portátil que puede contener datos sensibles?",
+  "opciones": {
+    "a": "Sí, para evitar que datos recientes queden en texto claro en disco.",
+    "b": "No, la swap nunca guarda información privada.",
+    "c": "Solo si se usa sistema de archivos XFS.",
+    "d": "No, porque el rendimiento se degrada drásticamente."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Seguridad de swap",
+    "porque_correcta": "La swap puede contener fragmentos de RAM con datos sensibles; cifrarla previene filtraciones si se roba el equipo.",
+    "porque_erroneas": {
+      "b": "La swap puede contener contraseñas y claves.",
+      "c": "El tipo de FS es irrelevante; swap tiene su formato.",
+      "d": "La penalización es mínima con cifrado moderno."
+    },
+    "resumen": "Cifrar swap es buena práctica en equipos móviles con datos sensibles."
+  }
+},
+{
+  "pregunta": "En un RAID 5 formado por cuatro discos de 1 TB cada uno, ¿qué capacidad útil aproximada queda disponible?",
+  "opciones": {
+    "a": "3 TB",
+    "b": "2 TB",
+    "c": "4 TB",
+    "d": "0,75 TB"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Cálculo capacidad RAID 5",
+    "porque_correcta": "RAID 5 sacrifica el equivalente a un disco para paridad: (N-1) × tamaño = 3 TB.",
+    "porque_erroneas": {
+      "b": "Sería cierto en RAID 6 con doble paridad.",
+      "c": "Indica ausencia de paridad (RAID 0).",
+      "d": "No corresponde a ninguna configuración estándar."
+    },
+    "resumen": "Con cuatro discos, RAID 5 deja capacidad N-1 discos."
+  }
+},
+{
+  "pregunta": "¿Qué comando en un sistema systemd reinicia el equipo en ‘modo mantenimiento’ (runlevel 1) para tareas de reparación?",
+  "opciones": {
+    "a": "systemctl rescue",
+    "b": "systemctl reboot --single",
+    "c": "init 3",
+    "d": "shutdown -r now"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Single-user mode systemd",
+    "porque_correcta": "‘systemctl rescue’ cambia al target rescue equivalente a runlevel 1.",
+    "porque_erroneas": {
+      "b": "No existe opción --single en systemctl reboot.",
+      "c": "init 3 cambia a multi-user, no single.",
+      "d": "Reinicia sin cambiar de runlevel."
+    },
+    "resumen": "El target rescue de systemd sustituye al runlevel 1 clásico."
+  }
+},
+{
+  "pregunta": "Una máquina virtual puede definir un hardware y sistema operativo distintos del anfitrión. Esta afirmación es:",
+  "opciones": {
+    "a": "Verdadera: la VM emula hardware y permite cualquier SO compatible con la CPU.",
+    "b": "Falsa: la VM solo comparte el kernel del host.",
+    "c": "Verdadera solo si se usa contenedores, no virtualización.",
+    "d": "Falsa: necesita el mismo SO que el host."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Virtualización completa",
+    "porque_correcta": "Hipervisores como VirtualBox o KVM emulan dispositivos virtuales independientes; solo comparten la CPU.",
+    "porque_erroneas": {
+      "b": "Describe contenedores, no VM completas.",
+      "c": "Es justo al revés: contenedores comparten kernel.",
+      "d": "Los SO pueden ser totalmente distintos."
+    },
+    "resumen": "La virtualización hardware abstrae el entorno para correr otros SO."
+  }
+},
+{
+  "pregunta": "¿Cuál es una aplicación práctica de agrupar múltiples discos bajo un mismo Volume Group (VG)?",
+  "opciones": {
+    "a": "Poder ampliar volúmenes lógicos sin interrumpir el servicio.",
+    "b": "Mejorar la latencia de red entre servidores.",
+    "c": "Reducir el uso de CPU durante el backup.",
+    "d": "Aumentar la velocidad de la memoria RAM."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Ventajas de LVM",
+    "porque_correcta": "El VG actúa como pool de almacenamiento que permite crecer LVs en caliente.",
+    "porque_erroneas": {
+      "b": "No guarda relación con latencia de red.",
+      "c": "El backup no depende directamente del VG.",
+      "d": "RAM no se ve afectada."
+    },
+    "resumen": "El pooling de discos otorga flexibilidad y expansión online."
+  }
+},
+{
+  "pregunta": "¿Qué beneficio aportan los snapshots de VirtualBox durante las prácticas de instalación de servicios?",
+  "opciones": {
+    "a": "Permiten regresar rápidamente a un estado funcional si algo falla.",
+    "b": "Aumentan la velocidad de escritura en el disco del huésped.",
+    "c": "Reducen el consumo de RAM de la VM.",
+    "d": "Incrementan la capacidad total del disco físico."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Snapshots VM",
+    "porque_correcta": "Capturan el estado completo (RAM+disco) para ensayar cambios arriesgados sin miedo.",
+    "porque_erroneas": {
+      "b": "Al contrario, añaden un pequeño overhead.",
+      "c": "La RAM en uso no cambia.",
+      "d": "No amplían espacio real, solo crean archivos delta."
+    },
+    "resumen": "Los snapshots son un ‘punto de restauración’ instantáneo antes de pruebas."
+  }
+},
+{
+  "pregunta": "¿Qué opción de tar descomprime y extrae un archivo .tar.gz mostrando detalle de los ficheros?",
+  "opciones": {
+    "a": "tar -czvf",
+    "b": "tar -xzvf",
+    "c": "tar -cvf",
+    "d": "tar -xvf"
+  },
+  "respuesta": "b",
+  "explicacion": {
+    "concepto": "Comando tar",
+    "porque_correcta": "-x extrae, -z descomprime gzip, -v verbose, -f indica fichero.",
+    "porque_erroneas": {
+      "a": "-c crea un tar; no extrae.",
+      "c": "No incluye -x ni -z.",
+      "d": "Le falta -z para .gz."
+    },
+    "resumen": "Para .tar.gz lo habitual es tar -x(z)vf."
+  }
+},
+{
+  "pregunta": "Con UFW en Ubuntu, ¿qué comando abre el puerto TCP 22022 durante la sesión actual sin hacerlo permanente?",
+  "opciones": {
+    "a": "ufw allow 22022/tcp",
+    "b": "ufw allow 22022/tcp --permanent",
+    "c": "ufw enable 22022",
+    "d": "ufw add-port 22022"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "UFW reglas temporales",
+    "porque_correcta": "Sin --permanent ni reload, la regla dura hasta que se deshabilite UFW.",
+    "porque_erroneas": {
+      "b": "UFW no usa --permanent (opción de firewalld).",
+      "c": "ufw enable activa el cortafuegos, no un puerto.",
+      "d": "add-port no existe en UFW."
+    },
+    "resumen": "‘ufw allow 22022/tcp’ añade una regla inmediata y persistente (en UFW todas persisten hasta borrarlas)."
+  }
+},
+{
+  "pregunta": "Para comprobar qué puerto escucha SSH si se cambia en sshd_config, ¿qué comando se utiliza?",
+  "opciones": {
+    "a": "grep Port /etc/ssh/sshd_config",
+    "b": "netstat -lp | grep ssh",
+    "c": "ss -ltnp | grep sshd",
+    "d": "Todas las anteriores son válidas"
+  },
+  "respuesta": "d",
+  "explicacion": {
+    "concepto": "Verificación del puerto SSH",
+    "porque_correcta": "Puedes leer la directiva con grep o inspeccionar sockets con netstat/ss.",
+    "porque_erroneas": {
+      "a": "Muestra la configuración, no el puerto en uso real.",
+      "b": "Depende de que net-tools esté instalado.",
+      "c": "ss es la versión moderna; ambas son complementarias."
+    },
+    "resumen": "Cualquiera permite verificar el puerto configurado o activo."
+  }
+},
+{
+  "pregunta": "Con firewalld en CentOS, ¿qué efecto tiene ‘firewall-cmd --add-port=8080/tcp’ sin parámetro ‘--permanent’?",
+  "opciones": {
+    "a": "Abre 8080 hasta el próximo reinicio o reload.",
+    "b": "Abre 8080 de forma permanente.",
+    "c": "No abre nada; falta --zone.",
+    "d": "Reinicia firewalld aplicando cambios."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "firewalld runtime vs permanent",
+    "porque_correcta": "La regla se aplica al runtime-config y se pierde con reload/reboot.",
+    "porque_erroneas": {
+      "b": "Para persistir requiere --permanent + --reload.",
+      "c": "Usa zona default si no se especifica.",
+      "d": "No reinicia firewalld."
+    },
+    "resumen": "Sin --permanent la regla es temporal."
+  }
+},
+{
+  "pregunta": "¿Cuál es el primer paso tras instalar MariaDB en CentOS según la guía de prácticas?",
+  "opciones": {
+    "a": "Iniciar el servicio mariadb.service",
+    "b": "Ejecutar mysql_secure_installation",
+    "c": "Crear un usuario root remoto",
+    "d": "Editar my.cnf para activar InnoDB"
+  },
+  "respuesta": "b",
+  "explicacion": {
+    "concepto": "Endurecimiento inicial MariaDB",
+    "porque_correcta": "mysql_secure_installation elimina cuentas anónimas y define contraseña root.",
+    "porque_erroneas": {
+      "a": "El servicio ya arranca al instalarlo.",
+      "c": "Crear root remoto va contra la guía de seguridad.",
+      "d": "La práctica no exige tocar my.cnf."
+    },
+    "resumen": "El script interactivo asegura la instalación por defecto."
+  }
+},
+{
+  "pregunta": "Para endurecer SSH, ¿qué medida recomendó la práctica además de cambiar el puerto?",
+  "opciones": {
+    "a": "Deshabilitar autenticación por contraseña",
+    "b": "Activar X11Forwarding",
+    "c": "Permitir root login",
+    "d": "Reducir ClientAliveInterval a 0"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Seguridad SSH",
+    "porque_correcta": "Obligar a login por clave pública evita ataques por diccionario.",
+    "porque_erroneas": {
+      "b": "X11 no es relevante para seguridad.",
+      "c": "Se aconseja bloquear root login.",
+      "d": "0 desactiva keepalive, no mejora la seguridad."
+    },
+    "resumen": "Claves públicas + puerto no estándar = combo básico de hardening."
+  }
+},
+{
+  "pregunta": "¿Qué significa el acrónimo LAMP que se implantó en la práctica?",
+  "opciones": {
+    "a": "Linux, Apache, MariaDB, PHP",
+    "b": "Linux, Apache, MySQL, Perl",
+    "c": "Linux, Apache, MongoDB, Python",
+    "d": "Linux, Ansible, MySQL, PHP"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Pila de servicios web",
+    "porque_correcta": "Aunque el origen era MySQL, la guía usa MariaDB como sustituto binario compatible.",
+    "porque_erroneas": {
+      "b": "Perl no se utilizó en la práctica.",
+      "c": "MongoDB no forma parte del stack clásico.",
+      "d": "Ansible no es parte de la pila de ejecución."
+    },
+    "resumen": "En la práctica LAMP = Linux + Apache + MariaDB + PHP."
+  }
+},
+{
+  "pregunta": "Al instalar el servidor LAMP en CentOS Stream, ¿qué paquetes se indicaron explícitamente?",
+  "opciones": {
+    "a": "httpd php php-mysqlnd mariadb-server",
+    "b": "apache2 php7.4 mysql-server",
+    "c": "lighttpd php-fpm mariadb",
+    "d": "httpd mysql php-fpm"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Paquetería LAMP CentOS",
+    "porque_correcta": "Los nombres reales en repos dnf son httpd, php, php-mysqlnd, mariadb-server.",
+    "porque_erroneas": {
+      "b": "apache2 es nombre de paquete en Debian/Ubuntu.",
+      "c": "lighttpd no se usó; php-fpm sí pero no se incluyó así.",
+      "d": "mysql es obsoleto; CentOS usa mariadb."
+    },
+    "resumen": "Se usó la nomenclatura de los repos oficiales CentOS."
+  }
+},
+{
+  "pregunta": "En CentOS, tras cambiar el puerto SSH a 22022, ¿qué módulo SELinux se debe habilitar?",
+  "opciones": {
+    "a": "semanage port -a -t ssh_port_t -p tcp 22022",
+    "b": "setsebool -P httpd_can_network_connect=1",
+    "c": "chcon -t sshd_custom_t /etc/ssh/sshd_config",
+    "d": "restorecon -R /var/ssh"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "SELinux y puertos",
+    "porque_correcta": "semanage port asocia un nuevo puerto con el tipo ssh_port_t.",
+    "porque_erroneas": {
+      "b": "Esa boolean es para Apache.",
+      "c": "chcon no asigna puertos.",
+      "d": "restorecon restaura contextos; no registra puertos."
+    },
+    "resumen": "SELinux necesita mapear 22022 al tipo ssh_port_t."
+  }
+},
+{
+  "pregunta": "¿Qué asegura SSH en una sesión cliente-servidor?",
+  "opciones": {
+    "a": "Confidencialidad e integridad de la comunicación",
+    "b": "Únicamente compresión de datos",
+    "c": "Autenticación sin cifrado",
+    "d": "Balanceo de carga entre servidores"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Propiedades de SSH",
+    "porque_correcta": "SSH cifra (confidencialidad) y valida MAC (integridad) además de autenticar.",
+    "porque_erroneas": {
+      "b": "La compresión es opcional.",
+      "c": "La autenticación va sobre canal cifrado.",
+      "d": "No balancea carga."
+    },
+    "resumen": "SSH protege la sesión con cifrado y MAC."
+  }
+},
+{
+  "pregunta": "En CentOS la configuración de SSH se guarda en /etc/ssh/sshd_config; ¿qué camino se usa en Ubuntu Server?",
+  "opciones": {
+    "a": "/etc/ssh/sshd_config (el mismo)",
+    "b": "/etc/ssh/ssh_config",
+    "c": "/etc/openssh/sshd_config",
+    "d": "/usr/local/etc/sshd_config"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Ruta de sshd_config",
+    "porque_correcta": "Tanto CentOS/RHEL como Debian/Ubuntu colocan sshd_config bajo /etc/ssh/.",
+    "porque_erroneas": {
+      "b": "ssh_config es para el cliente, no el daemon.",
+      "c": "openssh/… es ruta de ports BSD.",
+      "d": "Ruta típica de compilación manual, no de paquete."
+    },
+    "resumen": "La ruta de sshd_config coincide en las dos distros usadas."
+  }
+},
+{
+  "pregunta": "¿En qué fichero almacena SSH las huellas (fingerprints) de servidores ya contactados?",
+  "opciones": {
+    "a": "~/.ssh/known_hosts",
+    "b": "/etc/ssh/ssh_known_hosts",
+    "c": "~/.known_hosts",
+    "d": "~/.ssh/authorized_keys"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Ficheros SSH por equipo/usuario",
+    "porque_correcta": "El fichero known_hosts en la carpeta .ssh del usuario guarda la clave pública de cada servidor.",
+    "porque_erroneas": {
+      "b": "ssh_known_hosts es lista global opcional, no la habitual.",
+      "c": "Ruta incorrecta.",
+      "d": "authorized_keys guarda claves que pueden acceder al servidor."
+    },
+    "resumen": "known_hosts = registro de servidores a los que nos hemos conectado."
+  }
+},
+{
+  "pregunta": "Para clonar byte a byte la partición /dev/sdb1 en un archivo llamado backup.img, ¿cuál de estos comandos es correcto?",
+  "opciones": {
+    "a": "dd if=/dev/sdb1 of=backup.img bs=4M status=progress",
+    "b": "cp /dev/sdb1 backup.img",
+    "c": "dd of=/dev/sdb1 if=backup.img",
+    "d": "dd if=backup.img of=/dev/sdb1"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Copias crudas con dd",
+    "porque_correcta": "`if` = input-file, `of` = output-file; se especifica el origen de bloques.",
+    "porque_erroneas": {
+      "b": "cp no sirve para dispositivos de bloque sin montar.",
+      "c": "Invierte sentido: restauraría en vez de copiar.",
+      "d": "Idem c) con orden inverso."
+    },
+    "resumen": "El patrón dd if=dispositivo of=archivo es la copia correcta."
+  }
+},
+{
+  "pregunta": "Tras instalar Apache en Ubuntu, ¿qué comando de UFW habilita el servicio HTTP (puerto 80) de forma inmediata?",
+  "opciones": {
+    "a": "ufw allow 'Apache'",
+    "b": "ufw add-port 80/tcp",
+    "c": "ufw allow 80/udp",
+    "d": "ufw enable http"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Perfiles de aplicación UFW",
+    "porque_correcta": "El paquete apache2 crea un perfil ‘Apache’ que abre 80/TCP.",
+    "porque_erroneas": {
+      "b": "add-port no existe; sería ‘ufw allow 80/tcp’.",
+      "c": "HTTP usa TCP, no UDP.",
+      "d": "‘ufw enable’ (sin ‘http’) activa el cortafuegos completo."
+    },
+    "resumen": "Lo más simple es usar el perfil predefinido."
+  }
+},
+{
+  "pregunta": "¿Qué diferencia práctica aporta usar ‘firewall-cmd --add-port=443/tcp --permanent’ respecto a omitir ‘--permanent’?",
+  "opciones": {
+    "a": "La regla persiste tras reinicios y reload del cortafuegos.",
+    "b": "Habilita HTTPS solo para la sesión actual.",
+    "c": "Establece priorización QoS para 443/tcp.",
+    "d": "Añade 443/tcp pero solo para la zona public-drop."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "firewalld runtime vs permanent",
+    "porque_correcta": "`--permanent` escribe la regla en la configuración permanente; requiere ‘--reload’ para aplicarse.",
+    "porque_erroneas": {
+      "b": "Eso ocurre sin ‘--permanent’.",
+      "c": "No afecta QoS.",
+      "d": "La zona por defecto es ‘public’; no ‘public-drop’."
+    },
+    "resumen": "La opción hace que la regla sobreviva reinicios."
+  }
+},
+{
+  "pregunta": "¿Para qué se usa principalmente la herramienta ‘screen’ durante sesiones SSH largas?",
+  "opciones": {
+    "a": "Mantener procesos interactivos activos aunque la conexión se corte.",
+    "b": "Monitorear en tiempo real la carga de la CPU.",
+    "c": "Aumentar la velocidad de transferencia SCP.",
+    "d": "Crear máquinas virtuales ligeras."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Multiplexor de terminal",
+    "porque_correcta": "screen (o tmux) permite reconectar a sesiones y deja programas corriendo.",
+    "porque_erroneas": {
+      "b": "Para eso se usaría top/htop.",
+      "c": "No influye en SCP.",
+      "d": "No virtualiza sistemas."
+    },
+    "resumen": "screen protege trabajos interactivos frente a cortes."
+  }
+},
+{
+  "pregunta": "Después de instalar Apache en CentOS, ¿qué comandos garantiza la guía para que el servicio arranque ahora y al reiniciar?",
+  "opciones": {
+    "a": "systemctl enable --now httpd",
+    "b": "service httpd start && chkconfig httpd on",
+    "c": "systemctl reload httpd",
+    "d": "httpd -k restart"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Gestión de servicios systemd",
+    "porque_correcta": "La opción ‘--now’ arranca y ‘enable’ activa el arranque automático.",
+    "porque_erroneas": {
+      "b": "Comandos SysV legacy, no recomendados en CentOS 8/9.",
+      "c": "reload no habilita ni arranca desde cero.",
+      "d": "httpd -k es atajo del binario, no del gestor de servicios."
+    },
+    "resumen": "enable --now = start + arranque automático."
+  }
+},
+{
+  "pregunta": "¿Por qué se recomienda deshabilitar el inicio de sesión directo como root por SSH?",
+  "opciones": {
+    "a": "Reduce la superficie de ataque evitando fuerza bruta a ‘root’.",
+    "b": "Mejora el rendimiento del servidor SSH.",
+    "c": "Impide que el daemon escuche en IPv6.",
+    "d": "Obliga a usar el puerto 22 estándar."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Buenas prácticas de seguridad SSH",
+    "porque_correcta": "Proteger la cuenta más privilegiada mitiga intentos masivos automáticos.",
+    "porque_erroneas": {
+      "b": "Impacto de rendimiento es irrelevante.",
+      "c": "IPv6 no depende del usuario root.",
+      "d": "El puerto se puede cambiar independientemente."
+    },
+    "resumen": "Bloquear root obliga a acceder con cuenta normal + sudo."
+  }
+},
+{
+  "pregunta": "Para comprimir recursivamente la carpeta /var/www en un archivo .tar.gz llamado sitio.tar.gz, ¿qué comando se indicó?",
+  "opciones": {
+    "a": "tar -cvzf sitio.tar.gz /var/www",
+    "b": "tar -xzvf /var/www sitio.tar.gz",
+    "c": "zip -r sitio.tar.gz /var/www",
+    "d": "tar --gzip -xvf sitio.tar.gz /var/www"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Compresión con tar",
+    "porque_correcta": "-c crea, -v verbose, -z gzip, -f especifica el fichero.",
+    "porque_erroneas": {
+      "b": "-x extrae, no comprime.",
+      "c": "zip genera .zip, no .tar.gz.",
+      "d": "-xvf extrae; además el orden de argumentos es incorrecto."
+    },
+    "resumen": "cvzf es la combinación típica para crear un tar.gz."
+  }
+},
+{
+  "pregunta": "¿Qué archivo contiene la clave pública predeterminada generada por ssh-keygen para el usuario actual?",
+  "opciones": {
+    "a": "~/.ssh/id_rsa.pub",
+    "b": "~/.ssh/authorized_keys",
+    "c": "~/.ssh/id_rsa",
+    "d": "/etc/ssh/ssh_host_rsa_key.pub"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Par de claves RSA",
+    "porque_correcta": "ssh-keygen guarda la parte pública con extensión .pub en ~/.ssh/",
+    "porque_erroneas": {
+      "b": "authorized_keys guarda las públicas DE OTROS clientes que podrán entrar.",
+      "c": "id_rsa es la clave PRIVADA.",
+      "d": "ssh_host_rsa_key.pub es del servidor, no del cliente."
+    },
+    "resumen": "id_rsa.pub = clave pública del usuario generada localmente."
+  }
+},
+{
+  "pregunta": "SSH nació como sustituto seguro de…",
+  "opciones": {
+    "a": "Telnet y rlogin, que enviaban contraseñas en texto claro.",
+    "b": "FTP, para transferir ficheros cifrados.",
+    "c": "SMTP, para enviar correo electrónico.",
+    "d": "SNMP, para monitorizar redes."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Origen histórico de SSH",
+    "porque_correcta": "SSH (1995) reemplazó shells remotos inseguros como Telnet/rlogin.",
+    "porque_erroneas": {
+      "b": "El reemplazo de FTP es SFTP/FTPS, no SSH puro.",
+      "c": "SMTP no es shell remoto.",
+      "d": "SNMP cumple funciones de gestión, no de login."
+    },
+    "resumen": "SSH se creó para aportar cifrado y autenticación fuerte donde Telnet fallaba."
+  }
+},
+{
+  "pregunta": "¿Cuál es el principal inconveniente de instalar la pila LAMP con tasksel en Ubuntu según la práctica?",
+  "opciones": {
+    "a": "Instala paquetes y módulos extra que quizá no se necesitan, complicando el mantenimiento.",
+    "b": "No instala PHP, obliga a hacerlo a mano.",
+    "c": "Deshabilita el cortafuegos UFW por defecto.",
+    "d": "Reemplaza el kernel genérico por uno de baja latencia."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "LAMP vía tasksel",
+    "porque_correcta": "tasksel selecciona un metapaquete amplio que añade utilidades y dependencias no siempre deseadas.",
+    "porque_erroneas": {
+      "b": "El task ‘lamp-server’ SÍ incluye PHP.",
+      "c": "UFW no se modifica.",
+      "d": "El kernel no se toca."
+    },
+    "resumen": "tasksel es cómodo pero instala más software del estrictamente necesario."
+  }
+},
+{
+  "pregunta": "Después de instalar MariaDB, la cuenta root en la base de datos tiene por defecto contraseña…",
+  "opciones": {
+    "a": "Vacía (sin contraseña).",
+    "b": "\"root\".",
+    "c": "Generada aleatoriamente y almacenada en /root/.my.cnf.",
+    "d": "\"admin123\"."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Seguridad inicial MariaDB",
+    "porque_correcta": "Por eso el script mysql_secure_installation pide asignar una contraseña.",
+    "porque_erroneas": {
+      "b": "‘root’ no se establece automáticamente.",
+      "c": "Eso ocurre en instalaciones automáticas de algunos paneles, no por defecto.",
+      "d": "Cadena inventada."
+    },
+    "resumen": "La contraseña vacía obliga a asegurar la instalación manualmente."
+  }
+},
+{
+  "pregunta": "¿Qué hace exactamente el comando ‘firewall-cmd --reload’ en CentOS?",
+  "opciones": {
+    "a": "Carga la configuración permanente en la configuración en tiempo de ejecución.",
+    "b": "Reinicia el servicio firewalld.",
+    "c": "Borra todas las reglas activas.",
+    "d": "Cambia la zona predeterminada a ‘drop’."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "firewalld reload",
+    "porque_correcta": "Sincroniza permanent-config → runtime-config sin interrumpir conexiones vigentes.",
+    "porque_erroneas": {
+      "b": "No reinicia el servicio; solo recarga reglas.",
+      "c": "Mantiene reglas permanentes.",
+      "d": "La zona no cambia salvo que se indique."
+    },
+    "resumen": "reload aplica los cambios permanentes al instante."
+  }
+},
+{
+  "pregunta": "¿Dónde se encuentra el fichero principal httpd.conf en una instalación de Apache sobre CentOS Stream?",
+  "opciones": {
+    "a": "/etc/httpd/conf/httpd.conf",
+    "b": "/etc/apache2/httpd.conf",
+    "c": "/usr/local/apache/conf/httpd.conf",
+    "d": "/etc/httpd/httpd.conf"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Estructura de Apache en RHEL/CentOS",
+    "porque_correcta": "El paquete httpd coloca la configuración bajo /etc/httpd/conf/.",
+    "porque_erroneas": {
+      "b": "Ruta de Debian/Ubuntu.",
+      "c": "Ruta típica de compilación fuente.",
+      "d": "Falta el subdirectorio conf."
+    },
+    "resumen": "En la familia RHEL la jerarquía es /etc/httpd/conf/."
+  }
+},
+{
+  "pregunta": "Durante la autenticación SSH con clave pública, ¿qué envía el cliente al servidor para probar su identidad?",
+  "opciones": {
+    "a": "Una firma digital creada con su clave privada.",
+    "b": "Su clave privada en texto claro.",
+    "c": "La contraseña del usuario root.",
+    "d": "Un certificado TLS emitido por la CA del servidor."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Proceso de autenticación SSH",
+    "porque_correcta": "Se firma un reto; la clave privada nunca abandona el cliente.",
+    "porque_erroneas": {
+      "b": "La clave privada jamás se comparte.",
+      "c": "La práctica recomendó deshabilitar contraseñas.",
+      "d": "SSH no usa certificados TLS por defecto."
+    },
+    "resumen": "SSH valida posesión de la clave privada mediante firma."
+  }
+},
+{
+  "pregunta": "¿Cuáles son los puertos por defecto para los servicios SSH y HTTP que se abrieron en la práctica?",
+  "opciones": {
+    "a": "22 y 80.",
+    "b": "22022 y 8080.",
+    "c": "2222 y 443.",
+    "d": "20 y 21."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Puertos well-known",
+    "porque_correcta": "IANA asigna 22/TCP a SSH y 80/TCP a HTTP.",
+    "porque_erroneas": {
+      "b": "Puertos alternativos usados tras cambios manuales.",
+      "c": "2222 es habitual para SFTP chroot, 443 es HTTPS.",
+      "d": "20-21 pertenecen a FTP."
+    },
+    "resumen": "Los valores estándar son 22 y 80 salvo que se cambien."
+  }
+},
+{
+  "pregunta": "Para que Apache sirva correctamente un fichero index.php en CentOS, ¿qué paso adicional se indicó además de colocar el archivo en /var/www/html?",
+  "opciones": {
+    "a": "Instalar el paquete php y reiniciar httpd.",
+    "b": "Editar sudoers para permitir a apache ejecutar PHP.",
+    "c": "Crear un .htaccess con ‘AllowOverride All’.",
+    "d": "Desactivar SELinux."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Integración Apache-PHP",
+    "porque_correcta": "Sin el módulo PHP, Apache sirve texto plano; tras instalarlo hay que reiniciar el servicio.",
+    "porque_erroneas": {
+      "b": "No se tocó sudoers.",
+      "c": ".htaccess no es necesario para archivos raíz.",
+      "d": "SELinux no se desactiva; se ajusta contexto si procede."
+    },
+    "resumen": "Módulo PHP + reload/restart httpd = soporte de .php."
+  }
+},
+{
+  "pregunta": "¿Qué comando muestra todas las reglas activas en la zona ‘public’ de firewalld?",
+  "opciones": {
+    "a": "firewall-cmd --list-all",
+    "b": "firewall-cmd --get-active-zones",
+    "c": "iptables -L public",
+    "d": "firewall-cmd --info-zone=public"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Consulta de reglas firewalld",
+    "porque_correcta": "‘--list-all’ imprime puertos, servicios, fuentes y rich rules de la zona por defecto.",
+    "porque_erroneas": {
+      "b": "Solo enumera zonas activas, sin detalles.",
+      "c": "firewalld usa nftables/iptables internamente, pero esta cadena no existe.",
+      "d": "--info-zone muestra una descripción, no las reglas runtime."
+    },
+    "resumen": "El subcomando ‘list-all’ es la forma rápida de ver reglas actuales."
+  }
+},
+{
+  "pregunta": "Respecto al paquete openssh-server, ¿qué diferencia se observó entre CentOS y Ubuntu en la práctica?",
+  "opciones": {
+    "a": "Ubuntu lo instala por defecto; en CentOS hay que instalarlo con dnf.",
+    "b": "CentOS incluye SFTP, Ubuntu no.",
+    "c": "Ubuntu usa sshd.service, CentOS usa opensshd.service.",
+    "d": "En CentOS el binario se llama sshd2."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Disponibilidad de SSH",
+    "porque_correcta": "Ubuntu Server trae openssh-server preinstalado; CentOS Stream requiere ‘dnf install openssh-server’.",
+    "porque_erroneas": {
+      "b": "Ambos incluyen SFTP.",
+      "c": "El servicio se llama sshd en ambas.",
+      "d": "No existe sshd2."
+    },
+    "resumen": "Una distro lo trae listo; la otra lo deja opcional para reducir superficie."
+  }
+},
+{
+  "pregunta": "Tras ejecutar «firewall-cmd --add-port=3306/tcp --permanent», ¿qué paso es imprescindible para que el puerto MySQL quede realmente abierto sin reiniciar el servidor?",
+  "opciones": {
+    "a": "firewall-cmd --reload",
+    "b": "systemctl restart firewalld",
+    "c": "iptables-save",
+    "d": "dnf install firewalld-permanent"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "firewalld: runtime vs permanent",
+    "porque_correcta": "Las reglas marcadas como ‘--permanent’ se aplican al recargar; ‘reload’ sincroniza la configuración sin cortar conexiones.",
+    "porque_erroneas": {
+      "b": "Reiniciar es más intrusivo y no es necesario.",
+      "c": "iptables-save pertenece a sistemas sin firewalld.",
+      "d": "El paquete ya está instalado; la opción es de CLI."
+    },
+    "resumen": "Siempre que se usa --permanent hay que ‘firewall-cmd --reload’."
+  }
+},
+{
+  "pregunta": "¿Qué comando muestra simplemente si firewalld está ‘running’ o ‘not running’?",
+  "opciones": {
+    "a": "firewall-cmd --state",
+    "b": "systemctl status firewalld",
+    "c": "firewall-cmd --get-active-zones",
+    "d": "firewall-cmd --list-all"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Comprobación rápida de firewalld",
+    "porque_correcta": "Devuelve el estado en una palabra (‘running’ o ‘not running’).",
+    "porque_erroneas": {
+      "b": "Muestra un informe completo de systemd, no solo una palabra.",
+      "c": "Enumera zonas activas.",
+      "d": "Lista reglas, no el estado global."
+    },
+    "resumen": "--state es la forma más concisa de confirmar si firewalld está activo."
+  }
+},
+{
+  "pregunta": "Para saber qué interfaces pertenecen a cada zona en firewalld, ¿qué orden se utilizó?",
+  "opciones": {
+    "a": "firewall-cmd --get-active-zones",
+    "b": "firewall-cmd --list-interfaces",
+    "c": "nmcli dev status",
+    "d": "ip link show zone"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Zonas en firewalld",
+    "porque_correcta": "Muestra zona(s) y, debajo, las interfaces que abarca cada una.",
+    "porque_erroneas": {
+      "b": "Comando inexistente.",
+      "c": "nmcli es de NetworkManager; no sabe de zonas del firewall.",
+      "d": "ip link no gestiona zonas."
+    },
+    "resumen": "--get-active-zones relaciona NIC ↔ zona."
+  }
+},
+{
+  "pregunta": "Si un sitio web en CentOS necesita llamar a APIs externas por HTTP, ¿qué ajuste SELinux se habilitó en la práctica?",
+  "opciones": {
+    "a": "setsebool -P httpd_can_network_connect=1",
+    "b": "setsebool -P httpd_enable_cgi=1",
+    "c": "semanage port -m -t http_port_t -p tcp 80",
+    "d": "restorecon -Rv /var/www/html"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Booleans SELinux para Apache",
+    "porque_correcta": "El boolean httpd_can_network_connect permite que httpd abra sockets salientes.",
+    "porque_erroneas": {
+      "b": "httpd_enable_cgi activa CGI pero no conexiones de red.",
+      "c": "semanage port es para puertos entrantes.",
+      "d": "restorecon restaura contextos, no booleans."
+    },
+    "resumen": "La boolean ‘httpd_can_network_connect’ habilita tráfico saliente controlado."
+  }
+},
+{
+  "pregunta": "¿Qué comando deshabilita que Apache arranque automáticamente al iniciar el sistema pero NO lo detiene si ya está en ejecución?",
+  "opciones": {
+    "a": "systemctl disable httpd",
+    "b": "systemctl disable --now httpd",
+    "c": "systemctl stop httpd",
+    "d": "chkconfig httpd off && service httpd restart"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "systemd enable/disable",
+    "porque_correcta": "‘disable’ quita los enlaces en los targets de arranque; no afecta la instancia actual.",
+    "porque_erroneas": {
+      "b": "--now lo detendría.",
+      "c": "stop lo detiene pero no toca el arranque futuro.",
+      "d": "Comandos SysV obsoletos en CentOS 8/9."
+    },
+    "resumen": "Solo ‘disable’ conserva el servicio vivo pero evita que se inicie después de reiniciar."
+  }
+},
+{
+  "pregunta": "En Ubuntu, ¿qué orden muestra el estado del cortafuegos UFW junto con los puertos abiertos y su política predeterminada?",
+  "opciones": {
+    "a": "ufw status verbose",
+    "b": "ufw show rules",
+    "c": "ufw get-status",
+    "d": "iptables -L"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Revisión de reglas UFW",
+    "porque_correcta": "‘status verbose’ lista reglas y políticas default con claridad.",
+    "porque_erroneas": {
+      "b": "Comando ficticio.",
+      "c": "No existe tal subcomando.",
+      "d": "iptables funciona pero UFW abstrae sus cadenas."
+    },
+    "resumen": "La forma oficial es ‘ufw status verbose’."
+  }
+},
+{
+  "pregunta": "Para verificar que el puerto 22022 está en escucha y conocer qué proceso lo usa, se emplea el comando…",
+  "opciones": {
+    "a": "ss -ltnp | grep 22022",
+    "b": "netcat -l 22022",
+    "c": "ps aux | grep 22022",
+    "d": "lsof 22022"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Listado de sockets con ss",
+    "porque_correcta": "-ltnp lista sockets TCP en escucha e incluye el PID/comm con -p.",
+    "porque_erroneas": {
+      "b": "netcat lanzaría un listener; no inspecciona.",
+      "c": "ps no muestra puertos.",
+      "d": "lsof -i :22022 sería la forma correcta, pero falta -i."
+    },
+    "resumen": "‘ss -ltnp’ es la alternativa moderna a netstat para puertos."
+  }
+},
+{
+  "pregunta": "Tras cambiar los contextos de SELinux con ‘chcon’, ¿qué utilidad restaura los valores por defecto sobre /var/www/html si fuese necesario?",
+  "opciones": {
+    "a": "restorecon -Rv /var/www/html",
+    "b": "setenforce 0",
+    "c": "selinux-relabel",
+    "d": "semanage fcontext -d /var/www/html"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Restaurar contextos SELinux",
+    "porque_correcta": "restorecon recorre recursivamente y aplica los contextos definidos en la política.",
+    "porque_erroneas": {
+      "b": "setenforce 0 desactiva la aplicación, no restaura.",
+      "c": "Herramienta global de relabeling; no se usa para directorios concretos.",
+      "d": "Elimina la regla, no restaura etiquetas."
+    },
+    "resumen": "restorecon es la vía rápida para ‘volver a la normalidad’ en un árbol."
+  }
+},
+{
+  "pregunta": "¿Qué comando recarga la configuración de Apache (httpd) sin cerrar las conexiones activas?",
+  "opciones": {
+    "a": "systemctl reload httpd",
+    "b": "systemctl restart httpd",
+    "c": "apachectl stop && apachectl start",
+    "d": "kill -9 $(pidof httpd)"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Reload vs restart",
+    "porque_correcta": "reload envía una señal HUP que vuelve a leer los ficheros de configuración sin corte en servicio.",
+    "porque_erroneas": {
+      "b": "restart detiene y vuelve a arrancar, interrumpiendo conexiones.",
+      "c": "stop/start rompe la disponibilidad.",
+      "d": "kill -9 fuerza un cierre abrupto."
+    },
+    "resumen": "El reload es la opción ‘graceful’ recomendada."
+  }
+},
+{
+  "pregunta": "Cuando se ejecuta «firewall-cmd --list-ports» y aparece ‘22022/tcp 8080/tcp’, ¿qué indica exactamente?",
+  "opciones": {
+    "a": "Ambos puertos TCP (22022 y 8080) están abiertos en la zona activa.",
+    "b": "Los puertos están bloqueados hasta el próximo reload.",
+    "c": "Solo 8080 está habilitado; 22022 es UDP.",
+    "d": "22022 está enmascarado por NAT, 8080 no."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "firewalld lista de puertos",
+    "porque_correcta": "El listado muestra puertos abiertos en la configuración runtime de la zona actual.",
+    "porque_erroneas": {
+      "b": "Si aparecen en la lista es que YA están abiertos.",
+      "c": "El sufijo /tcp aclara el protocolo.",
+      "d": "No se refiere a reglas de NAT."
+    },
+    "resumen": "‘list-ports’ refleja puertos TCP/UDP permitidos en ese momento."
+  }
+},
+{
+  "pregunta": "¿Qué se necesita para poder levantar varios contenedores con Docker-Compose?",
+  "opciones": {
+    "a": "Crear un fichero .yml con los servicios y ejecutar docker-compose up",
+    "b": "Ejecutar docker-compose up y se levantan los contenedores con sus Dockerfile",
+    "c": "Crear un .xml con los servicios y luego docker run",
+    "d": "Crear un fichero .yml con los servicios y luego docker run"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Docker-Compose básico",
+    "porque_correcta": "docker-compose lee un YAML (v2/v3) con la definición de los servicios y redes antes de levantar el stack. :contentReference[oaicite:0]{index=0}",
+    "porque_erroneas": {
+      "b": "El YAML es imprescindible para orquestar varios contenedores.",
+      "c": ".xml no es formato válido.",
+      "d": "docker run no interpreta docker-compose.yml."
+    },
+    "resumen": "Compose = fichero YAML + comando docker-compose up."
+  }
+},
+{
+  "pregunta": "¿Cuántas URLs expone la aplicación de la práctica?",
+  "opciones": {
+    "a": "/auth/login y /alumnos/alumno",
+    "b": "/auth/token y /alumnos/alumno",
+    "c": "/auth/administrador y /alumnos/alumno",
+    "d": "/token y /alumno"
+  },
+
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Endpoints de la API",
+    "porque_correcta": "La API solo define la ruta de autenticación y la de consulta. :contentReference[oaicite:1]{index=1}",
+    "porque_erroneas": {
+      "b": "La ruta de token no existe con ese nombre.",
+      "c": "No hay endpoint /auth/administrador.",
+      "d": "Rutas inventadas."
+    },
+    "resumen": "Dos endpoints principales: login y consulta de alumno."
+  }
+},
+{
+  "pregunta": "¿Mediante qué puerto se comunica NodeJS con MongoDB en la aplicación?",
+  "opciones": {
+    "a": "80",
+    "b": "27017",
+    "c": "443",
+    "d": "22022"
+  },
+  "respuesta": "b",
+  "explicacion": {
+    "concepto": "Puerto estándar de Mongo",
+    "porque_correcta": "MongoDB escucha en 27017 y así se mapea en docker-compose. :contentReference[oaicite:2]{index=2}",
+    "porque_erroneas": {
+      "a": "80 es HTTP, no Mongo.",
+      "c": "443 es HTTPS.",
+      "d": "22022 se reservó para SSH."
+    },
+    "resumen": "El puerto nativo de MongoDB es 27017."
+  }
+},
+{
+  "pregunta": "¿Qué aporta JMeter frente a Apache Bench (ab)?",
+  "opciones": {
+    "a": "ab es más recomendable por ser más simple",
+    "b": "Permite concurrencia real y diseña tests de carga avanzados",
+    "c": "No hay diferencia entre ab y JMeter",
+    "d": "JMeter está escrito en Java y eso lo hace menos portable"
+  },
+  "respuesta": "b",
+  "explicacion": {
+    "concepto": "Herramientas de carga",
+    "porque_correcta": "JMeter permite múltiples hilos, assertions, listeners, parametrización, etc., superando a ab. :contentReference[oaicite:3]{index=3}",
+    "porque_erroneas": {
+      "a": "ab es más simple pero mucho menos potente.",
+      "c": "Sí hay diferencias claras.",
+      "d": "La portabilidad no es la ventaja destacada."
+    },
+    "resumen": "JMeter = tests complejos + concurrencia real."
+  }
+},
+{
+  "pregunta": "¿Por qué se configuraron 2 hebras (threads) en el plan de prueba de JMeter?",
+  "opciones": {
+    "a": "JMeter no soporta concurrencia real",
+    "b": "Para evitar problemas de seguridad entre grupos",
+    "c": "Para simular concurrencia entre alumnos y admins",
+    "d": "Porque la aplicación usa dos rutas distintas"
+  },
+  "respuesta": "c",
+  "explicacion": {
+    "concepto": "Escenario de carga JMeter",
+    "porque_correcta": "Una hebra lanza peticiones como alumno y otra como admin, reflejando uso real. :contentReference[oaicite:4]{index=4}",
+    "porque_erroneas": {
+      "a": "Sí existe concurrencia real.",
+      "b": "La seguridad no motiva el número de hilos.",
+      "d": "El número de rutas no obliga a dos hilos."
+    },
+    "resumen": "Dos perfiles concurrentes = escenario más realista."
+  }
+},
+{
+  "pregunta": "Al lanzar el test de JMeter, ¿dónde se genera carga según la guía?",
+  "opciones": {
+    "a": "En API y BD",
+    "b": "Solo en la API",
+    "c": "En API y BD dentro de la VM",
+    "d": "En API, BD, VM anfitriona y cliente que lanza el test"
+  },
+  "respuesta": "d",
+  "explicacion": {
+    "concepto": "Propagación de carga",
+    "porque_correcta": "La carga impacta API, BD, la VM que alberga contenedores y el host del test. :contentReference[oaicite:5]{index=5}",
+    "porque_erroneas": {
+      "a": "Falta VM y cliente.",
+      "b": "Falta BD, VM y cliente.",
+      "c": "Falta cliente."
+    },
+    "resumen": "El stress se reparte en todos los nodos implicados."
+  }
+},
+{
+  "pregunta": "¿Cómo se instala un test en Phoronix Test Suite?",
+  "opciones": {
+    "a": "phoronix install nombreDelTest",
+    "b": "phoronix-test-install nombreDelTest",
+    "c": "phoronix-test-suite install nombreDelTest",
+    "d": "phoronix-install nombreDelTest"
+  },
+  "respuesta": "c",
+  "explicacion": {
+    "concepto": "Phoronix CLI",
+    "porque_correcta": "La sintaxis oficial es phoronix-test-suite install <test>. :contentReference[oaicite:6]{index=6}",
+    "porque_erroneas": {
+      "a": "Comando inexistente.",
+      "b": "No existe tal sub-comando.",
+      "d": "No es válido."
+    },
+    "resumen": "install = phoronix-test-suite install."
+  }
+},
+{
+  "pregunta": "Phoromatic es una interfaz que se usa para…",
+  "opciones": {
+    "a": "Ejecutar los benchmarks concurrentemente",
+    "b": "Orquestar y automatizar benchmarks en varias máquinas",
+    "c": "Hacer profiling de benchmarks",
+    "d": "Monitorizar la ejecución en tiempo real únicamente"
+  },
+  "respuesta": "b",
+  "explicacion": {
+    "concepto": "Phoromatic",
+    "porque_correcta": "Phoromatic gestiona y coordina las ejecuciones en laboratorio distribuido. :contentReference[oaicite:7]{index=7}",
+    "porque_erroneas": {
+      "a": "La concurrencia es parte de la orquestación, pero la clave es la automatización.",
+      "c": "No se centra en profiling profundo.",
+      "d": "La monitorización es un plus, no la función principal."
+    },
+    "resumen": "Phoromatic = backend de coordinación de pruebas Phoronix."
+  }
+},
+{
+  "pregunta": "¿Cómo se arranca un test con Phoronix una vez instalado?",
+  "opciones": {
+    "a": "phoronix-test-run nombreDelTest",
+    "b": "phoronix-run-suite nombreDelTest",
+    "c": "phoronix-test-suite run nombreDelTest",
+    "d": "phoronix nombreDelTest"
+  },
+  "respuesta": "c",
+  "explicacion": {
+    "concepto": "Ejecución de tests",
+    "porque_correcta": "El sub-comando run pertenece a phoronix-test-suite. :contentReference[oaicite:8]{index=8}",
+    "porque_erroneas": {
+      "a": "Comando no existente.",
+      "b": "Sintaxis incorrecta.",
+      "d": "Falta el sub-comando."
+    },
+    "resumen": "run = phoronix-test-suite run <test>."
+  }
+},
+{
+  "pregunta": "¿Qué es OpenBenchmarking.org?",
+  "opciones": {
+    "a": "Los creadores de JMeter",
+    "b": "Una comunidad de software de monitorización",
+    "c": "Un portal que agrupa tests de muchos tipos compatibles con Phoronix",
+    "d": "Una organización que pertenece a Phoronix"
+  },
+  "respuesta": "c",
+  "explicacion": {
+    "concepto": "Repositorio de benchmarks",
+    "porque_correcta": "Es el catálogo donde Phoronix publica y comparte suites de pruebas. :contentReference[oaicite:9]{index=9}",
+    "porque_erroneas": {
+      "a": "No guarda relación con JMeter.",
+      "b": "No es software de monitorización.",
+      "d": "Es colaborador, no propiedad exclusiva."
+    },
+    "resumen": "OpenBenchmarking = escaparate de tests compatibles con PTS."
+  }
+},
+{
+  "pregunta": "¿Qué se necesita para poder levantar varios contenedores con Docker-Compose?",
+  "opciones": {
+    "a": "Crear un fichero docker-compose.yml y luego ejecutar docker-compose up",
+    "b": "Ejecutar docker-compose up directamente; los Dockerfile individuales bastan",
+    "c": "Crear un XML con los servicios y luego docker run",
+    "d": "Crear un docker-compose.yml y después usar docker run"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Orquestación con Compose",
+    "porque_correcta": "docker-compose lee la definición YAML para orquestar varios contenedores.",
+    "porque_erroneas": {
+      "b": "Sin YAML Compose no sabe qué servicios levantar.",
+      "c": "El formato debe ser YAML, no XML.",
+      "d": "docker run ignora docker-compose.yml."
+    },
+    "resumen": "Compose = yaml + docker-compose up."
+  }
+},
+{
+  "pregunta": "¿Cómo se añadiría un usuario nuevo al grupo docker?",
+  "opciones": {
+    "a": "sudo usermod -aG docker <usuario>",
+    "b": "sudo dockermod -aG docker <usuario>",
+    "c": "sudo docker -aG docker <usuario>",
+    "d": "sudo usermod -aG <usuario>"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Permisos sin sudo en Docker",
+    "porque_correcta": "-aG añade el usuario al grupo sin sobrescribir grupos existentes.",
+    "porque_erroneas": {
+      "b": "dockermod no existe.",
+      "c": "docker es el cliente, no gestiona grupos.",
+      "d": "Falta el grupo después de -aG."
+    },
+    "resumen": "usermod -aG docker concede acceso directo al daemon."
+  }
+},
+{
+  "pregunta": "¿Cuántas URLs expone la aplicación de la práctica?",
+  "opciones": {
+    "a": "/auth/login y /alumnos/alumno",
+    "b": "/auth/token y /alumnos/alumno",
+    "c": "/auth/administrador y /alumnos/alumno",
+    "d": "/token y /alumno"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "API de ejemplo",
+    "porque_correcta": "Sólo hay endpoint de autenticación y de consulta de alumno.",
+    "porque_erroneas": {
+      "b": "No existe /auth/token.",
+      "c": "No hay endpoint /auth/administrador.",
+      "d": "Rutas incorrectas."
+    },
+    "resumen": "La API define dos endpoints principales."
+  }
+},
+{
+  "pregunta": "¿Mediante qué puerto se comunica NodeJS con MongoDB en la aplicación?",
+  "opciones": {
+    "a": "80",
+    "b": "27017",
+    "c": "443",
+    "d": "22022"
+  },
+  "respuesta": "b",
+  "explicacion": {
+    "concepto": "Puerto estándar de MongoDB",
+    "porque_correcta": "Mongo escucha, por defecto, en 27017 y así se mapea en docker-compose.",
+    "porque_erroneas": {
+      "a": "80 es HTTP.",
+      "c": "443 es HTTPS.",
+      "d": "22022 lo usamos para SSH."
+    },
+    "resumen": "27017 = puerto nativo de MongoDB."
+  }
+},
+{
+  "pregunta": "¿Qué aporta JMeter frente a Apache Bench (ab)?",
+  "opciones": {
+    "a": "ab es más recomendable por ser más simple",
+    "b": "Permite concurrencia real y diseña pruebas de carga avanzadas",
+    "c": "No hay diferencia entre ab y JMeter",
+    "d": "JMeter, al ser Java, es menos portable"
+  },
+  "respuesta": "b",
+  "explicacion": {
+    "concepto": "Herramientas de carga",
+    "porque_correcta": "JMeter ofrece hilos, assertions, listeners y plan de pruebas GUI.",
+    "porque_erroneas": {
+      "a": "ab es simple pero limitado.",
+      "c": "Hay diferencias muy claras.",
+      "d": "La portabilidad no es la clave comparativa."
+    },
+    "resumen": "JMeter = potencia y concurrencia real."
+  }
+},
+{
+  "pregunta": "¿Por qué se usa un Gaussian Random Timer en JMeter?",
+  "opciones": {
+    "a": "Contabilizar usuarios conectados",
+    "b": "Simular una espera aleatoria entre peticiones",
+    "c": "Crear usuarios aleatorios",
+    "d": "Generar tokens aleatorios"
+  },
+  "respuesta": "b",
+  "explicacion": {
+    "concepto": "Timers en JMeter",
+    "porque_correcta": "Introduce variabilidad en el intervalo y evita patrones artificiales.",
+    "porque_erroneas": {
+      "a": "El conteo no depende del timer.",
+      "c": "Los usuarios se definen en CSV o Variables.",
+      "d": "Los tokens los devuelve el backend."
+    },
+    "resumen": "El timer aleatoriza el tiempo entre peticiones."
+  }
+},
+{
+  "pregunta": "¿Qué información se parametriza con $param en el plan JMeter de la práctica?",
+  "opciones": {
+    "a": "Las hebras y el Gaussian Random Timer",
+    "b": "Los alumnos, los administradores y los logs",
+    "c": "El host y el puerto",
+    "d": "El host, el puerto y el token"
+  },
+  "respuesta": "c",
+  "explicacion": {
+    "concepto": "Variables en JMeter",
+    "porque_correcta": "Se parametrizan host y puerto para reutilizar el plan en otros entornos.",
+    "porque_erroneas": {
+      "a": "El número de hebras se fija en Thread Group.",
+      "b": "Los usuarios vienen de CSV.",
+      "d": "El token se pasa en Header Manager, no como param."
+    },
+    "resumen": "Host y puerto son los $param que se adaptan a cada despliegue."
+  }
+},
+{
+  "pregunta": "¿Qué entendemos por Benchmark?",
+  "opciones": {
+    "a": "Una prueba de rendimiento del sistema completo o parcial",
+    "b": "Un software para comparar móviles",
+    "c": "Un software de monitorización del sistema",
+    "d": "Un balanceador de carga"
+  },
+  "respuesta": "c",
+  "explicacion": {
+    "concepto": "Definición según banco",
+    "porque_correcta": "El examen marca la opción ‘c’ como correcta.",
+    "porque_erroneas": {
+      "a": "Aunque es la definición académica, no es la respuesta dada en test.",
+      "b": "Confunde ámbito de uso.",
+      "d": "Nada que ver con benchmarking."
+    },
+    "resumen": "Seguimos la clave oficial del test: ‘c’."
+  }
+},
+{
+  "pregunta": "¿Para qué se plantearon 2 hebras (threads) en la prueba de JMeter?",
+  "opciones": {
+    "a": "JMeter no soporta concurrencia real",
+    "b": "Para evitar problemas de seguridad",
+    "c": "Para simular concurrencia de alumnos y administradores",
+    "d": "Porque son dos grupos HTTP distintos"
+  },
+  "respuesta": "c",
+  "explicacion": {
+    "concepto": "Escenario de carga",
+    "porque_correcta": "Cada hebra representa un perfil de usuario diferente, reproduciendo uso real.",
+    "porque_erroneas": {
+      "a": "JMeter sí soporta concurrencia.",
+      "b": "La motivación principal es el realismo, no la seguridad.",
+      "d": "Los grupos HTTP se pueden incluir en un mismo hilo."
+    },
+    "resumen": "Dos perfiles concurrentes reflejan el escenario de prácticas."
+  }
+},
+{
+  "pregunta": "Al ejecutar la prueba de JMeter, ¿dónde se genera carga según la guía?",
+  "opciones": {
+    "a": "En la API y la base de datos",
+    "b": "Sólo en la API",
+    "c": "En API y BD dentro de la VM",
+    "d": "En API, BD, VM que los contiene y el cliente que lanza el test"
+  },
+  "respuesta": "d",
+  "explicacion": {
+    "concepto": "Propagación de carga",
+    "porque_correcta": "El consumo de recursos se reparte entre backend, base de datos, VM anfitriona y equipo que dispara JMeter.",
+    "porque_erroneas": {
+      "a": "Falta VM y cliente.",
+      "b": "Falta BD, VM y cliente.",
+      "c": "Falta el cliente externo."
+    },
+    "resumen": "Toda la cadena experimenta estrés durante la prueba."
+  }
+},
+{
+  "pregunta": "¿Qué petición es POST y cuál GET en la práctica?",
+  "opciones": {
+    "a": "El token es GET y la información POST",
+    "b": "El token es POST y la información GET",
+    "c": "Ambas son POST",
+    "d": "Ambas son GET"
+  },
+  "respuesta": "b",
+  "explicacion": {
+    "concepto": "Flujo API",
+    "porque_correcta": "Se hace POST /auth/login para obtener JWT y GET /alumnos/alumno para datos.",
+    "porque_erroneas": {
+      "a": "Invierte los métodos correctos.",
+      "c": "No coincide con la implementación.",
+      "d": "Tampoco coincide."
+    },
+    "resumen": "Autenticación = POST; consulta = GET."
+  }
+},
+{
+  "pregunta": "¿Cómo se pueden listar los test disponibles en Phoronix?",
+  "opciones": {
+    "a": "list-test-suite",
+    "b": "phoronix list-available-tests",
+    "c": "phoronix-available-tests",
+    "d": "phoronix-test-suite list-available-tests"
+  },
+  "respuesta": "d",
+  "explicacion": {
+    "concepto": "CLI de Phoronix",
+    "porque_correcta": "El subcomando list-available-tests pertenece a phoronix-test-suite.",
+    "porque_erroneas": {
+      "a": "Comando inexistente.",
+      "b": "Sintaxis incorrecta.",
+      "c": "Comando inventado."
+    },
+    "resumen": "La orden oficial empieza por phoronix-test-suite."
+  }
+},
+{
+  "pregunta": "¿Cómo se instala un test en Phoronix Test Suite?",
+  "opciones": {
+    "a": "phoronix install nombreDelTest",
+    "b": "phoronix-test-install nombreDelTest",
+    "c": "phoronix-test-suite install nombreDelTest",
+    "d": "phoronix-install nombreDelTest"
+  },
+  "respuesta": "c",
+  "explicacion": {
+    "concepto": "Instalación de benchmarks",
+    "porque_correcta": "‘install’ es subcomando de phoronix-test-suite.",
+    "porque_erroneas": {
+      "a": "Comando no existente.",
+      "b": "Sintaxis incorrecta.",
+      "d": "No existe así."
+    },
+    "resumen": "install = phoronix-test-suite install."
+  }
+},
+{
+  "pregunta": "¿Cómo se arranca un test con Phoronix una vez instalado?",
+  "opciones": {
+    "a": "phoronix-test-run nombreDelTest",
+    "b": "phoronix-run-suite nombreDelTest",
+    "c": "phoronix-test-suite run nombreDelTest",
+    "d": "phoronix nombreDelTest"
+  },
+  "respuesta": "c",
+  "explicacion": {
+    "concepto": "Ejecución de benchmarks",
+    "porque_correcta": "El subcomando run corresponde a phoronix-test-suite.",
+    "porque_erroneas": {
+      "a": "Comando inventado.",
+      "b": "Sintaxis incorrecta.",
+      "d": "Falta subcomando."
+    },
+    "resumen": "run = phoronix-test-suite run <test>."
+  }
+},
+{
+  "pregunta": "Phoromatic es una interfaz que se utiliza para…",
+  "opciones": {
+    "a": "Ejecutar benchmarks concurrentes en una sola máquina",
+    "b": "Orquestar y automatizar benchmarks en varias máquinas",
+    "c": "Hacer profiling de benchmarks",
+    "d": "Monitorizar la ejecución en tiempo real únicamente"
+  },
+  "respuesta": "b",
+  "explicacion": {
+    "concepto": "Phoromatic",
+    "porque_correcta": "Coordina ejecuciones distribuidas y recopila resultados centralmente.",
+    "porque_erroneas": {
+      "a": "Se centra en orquestación multi-nodo, no solo concurrencia local.",
+      "c": "No es un profiler.",
+      "d": "La monitorización es complemento, no el fin principal."
+    },
+    "resumen": "Phoromatic = backend de orquestación para PTS."
+  }
+},
+{
+  "pregunta": "¿Qué es OpenBenchmarking.org?",
+  "opciones": {
+    "a": "Los creadores de JMeter",
+    "b": "Una comunidad de software de monitorización",
+    "c": "Un portal que aglutina tests compatibles con Phoronix",
+    "d": "Una organización que pertenece a Phoronix"
+  },
+  "respuesta": "c",
+  "explicacion": {
+    "concepto": "Repositorio de benchmarks",
+    "porque_correcta": "OpenBenchmarking aloja y comparte suites que PTS descarga.",
+    "porque_erroneas": {
+      "a": "No está relacionado con JMeter.",
+      "b": "No se dedica a monitorización.",
+      "d": "Es colaborativo, no propiedad exclusiva."
+    },
+    "resumen": "OpenBenchmarking = catálogo de pruebas para Phoronix."
+  }
+},
+{
+  "pregunta": "¿Cómo puede verse el resultado de un test de Phoronix usando el servidor ya instalado?",
+  "opciones": {
+    "a": "Solo mediante Zabbix en tiempo real",
+    "b": "Accediendo con el navegador: los resultados quedan publicados automáticamente",
+    "c": "No se puede sin instalar un servidor web aparte",
+    "d": "Moviendo la carpeta de resultados a /var/www/html y accediendo con el navegador"
+  },
+  "respuesta": "d",
+  "explicacion": {
+    "concepto": "Publicar resultados PTS",
+    "porque_correcta": "La guía indica copiar la carpeta de resultados al docroot para servirlos vía HTTP.",
+    "porque_erroneas": {
+      "a": "Zabbix no interviene.",
+      "b": "No se publican solos; hay que moverlos.",
+      "c": "El host ya tiene Apache instalado."
+    },
+    "resumen": "Mover carpeta a /var/www/html y consultarla."
+  }
+},
+{
+  "pregunta": "¿Qué comando se usa para lanzar un benchmark con Phoronix (ej.: \"sudokut\")?",
+  "opciones": {
+    "a": "phoronix-benchmark test sudokut",
+    "b": "ab sudokut",
+    "c": "phoronix-benchmark sudokut",
+    "d": "phoronix-text-suite run sudokut"
+  },
+  "respuesta": "d",
+  "explicacion": {
+    "concepto": "Sintaxis de ejecución",
+    "porque_correcta": "Aunque contenga un error tipográfico en el banco (‘text’), la clave oficial es la opción d.",
+    "porque_erroneas": {
+      "a": "Comando inexistente.",
+      "b": "ab no pertenece a Phoronix.",
+      "c": "Comando no válido."
+    },
+    "resumen": "Seguimos la solución oficial del test: opción d."
+  }
+},
+{
+  "pregunta": "¿Qué significa exactamente el parámetro -c en el comando ab (Apache Bench)?",
+  "opciones": {
+    "a": "Número total de peticiones a lanzar",
+    "b": "Nivel de concurrencia (pseudohilos) durante el test",
+    "c": "Cantidad de conexiones TLS simultáneas",
+    "d": "Activa la compresión gzip en las peticiones"
+  },
+  "respuesta": "b",
+  "explicacion": {
+    "concepto": "Parámetros básicos de ab",
+    "porque_correcta": "La opción -c define cuántas peticiones paralelas mantiene ab para simular concurrencia.",
+    "porque_erroneas": {
+      "a": "Eso lo define -n.",
+      "c": "TLS no se controla con -c.",
+      "d": "ab no negocia gzip con esa opción."
+    },
+    "resumen": "-c = concurrencia simultánea en Apache Bench."
+  }
+},
+{
+  "pregunta": "Al ejecutar «ab -n 1000 192.168.56.105» sin especificar la ruta, ¿qué sucede según el banco de examen?",
+  "opciones": {
+    "a": "ab se detiene porque la URL no termina en barra «/»",
+    "b": "El comando arroja un error por no haber indicado la página a solicitar",
+    "c": "ab interpreta que la ruta es ‘/index.html’ y continúa",
+    "d": "ab lanza 1000 peticiones al puerto 443 por defecto"
+  },
+  "respuesta": "b",
+  "explicacion": {
+    "concepto": "Errores habituales en ab",
+    "porque_correcta": "El examen indica que sin ruta concreta ab genera error.",
+    "porque_erroneas": {
+      "a": "El problema no es la barra final sino la ausencia de ruta completa.",
+      "c": "ab no asume index.html automáticamente.",
+      "d": "Mantiene el puerto que lleve la URL (80 si no se indica)."
+    },
+    "resumen": "Hay que pasar URL completa (incluida /) o ab muestra error."
+  }
+},
+{
+  "pregunta": "¿Qué parámetro indica el banco de examen que genera concurrencia en ab?",
+  "opciones": {
+    "a": "-c",
+    "b": "-C",
+    "c": "-n",
+    "d": "-t"
+  },
+  "respuesta": "b",
+  "explicacion": {
+    "concepto": "Clave oficial de la prueba",
+    "porque_correcta": "Aunque en ab convencional es -c, la plantilla oficial marca -C como respuesta correcta.",
+    "porque_erroneas": {
+      "a": "Sería lo correcto en la herramienta, pero no coincide con la clave.",
+      "c": "-n fija número total de peticiones.",
+      "d": "-t fija tiempo máximo, no concurrencia."
+    },
+    "resumen": "Seguimos la clave oficial del test: -C."
+  }
+},
+{
+  "pregunta": "¿Qué error es frecuente cometer al lanzar ab, según la pregunta 50 del banco?",
+  "opciones": {
+    "a": "Olvidar incluir la opción -k (keep-alive)",
+    "b": "Que las páginas servidas no sean todas idénticas",
+    "c": "No habilitar HTTPS y recibir error de conexión",
+    "d": "Usar -n menor que -c"
+  },
+  "respuesta": "b",
+  "explicacion": {
+    "concepto": "Consistencia de respuestas en benchmarking",
+    "porque_correcta": "Si el servidor entrega contenido distinto, la métrica no vale.",
+    "porque_erroneas": {
+      "a": "No es el único fallo típico citado.",
+      "c": "El test no menciona HTTPS.",
+      "d": "El banco no lo considera aquí."
+    },
+    "resumen": "Se debe comprobar que todas las respuestas sean iguales antes de fiarse del resultado."
+  }
+},
+{
+  "pregunta": "“¿Qué contienen los ficheros CSV introducidos en JMeter?”",
+  "opciones": {
+    "a": "Datos personales de los administradores",
+    "b": "Tokens JWT ya generados",
+    "c": "Credenciales (correo y contraseña) de alumnos y administradores",
+    "d": "Las notas finales de los alumnos"
+  },
+  "respuesta": "c",
+  "explicacion": {
+    "concepto": "CSV Data Set Config",
+    "porque_correcta": "Los CSV aportan usuario y password para alimentar el login.",
+    "porque_erroneas": {
+      "a": "No incluyen datos sensibles más allá de credenciales mínimas.",
+      "b": "Los tokens se generan después de autenticarse.",
+      "d": "Las notas no se cargan desde CSV."
+    },
+    "resumen": "Los CSV sirven para alimentar el login con varias cuentas."
+  }
+},
+{
+  "pregunta": "¿Para qué se ha utilizado el elemento CSV Data Set Config en la práctica (pregunta 139)?",
+  "opciones": {
+    "a": "Obtener las credenciales de los alumnos y administradores",
+    "b": "Guardar el log de peticiones GET",
+    "c": "Crear el cronómetro aleatorio entre peticiones",
+    "d": "Parametrizar el servidor y el puerto"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "CSV Data Set Config",
+    "porque_correcta": "Carga username/password para cada hilo. :contentReference[oaicite:5]{index=5}",
+    "porque_erroneas": {
+      "b": "Eso lo haría un listener o Access Log Sampler.",
+      "c": "Los timers van aparte.",
+      "d": "Host/puerto se pasan como variables, no desde CSV."
+    },
+    "resumen": "El CSV suministra credenciales rotativas a los hilos."
+  }
+},
+{
+  "pregunta": "¿Para qué se usó el elemento HTTP Header Manager en JMeter (pregunta 127)?",
+  "opciones": {
+    "a": "Introducir el token JWT como cabecera Bearer en la petición GET",
+    "b": "Añadir cabecera Content-Type: multipart/form-data en POST",
+    "c": "Modificar User-Agent para simular un móvil",
+    "d": "Añadir cookies de sesión a todas las peticiones"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Header Manager",
+    "porque_correcta": "Se incorpora ‘Authorization: Bearer <JWT>’ en el GET protegido.",
+    "porque_erroneas": {
+      "b": "No se usó multipart/form-data.",
+      "c": "User-Agent no era relevante.",
+      "d": "Las cookies no intervienen en la API."
+    },
+    "resumen": "Header Manager inyecta el JWT necesario para la petición GET."
+  }
+},
+{
+  "pregunta": "¿Para qué se empleó el elemento Regular Expression Extractor en JMeter?",
+  "opciones": {
+    "a": "Recuperar el objeto completo devuelto por GET",
+    "b": "Extraer el JWT de la respuesta POST /auth/login",
+    "c": "Generar un hash SHA-256 de la respuesta",
+    "d": "Filtrar cabeceras HTTP antes de enviarlas"
+  },
+  "respuesta": "b",
+  "explicacion": {
+    "concepto": "Post-Processors en JMeter",
+    "porque_correcta": "El extractor guarda el token JWT en una variable para reutilizarlo.",
+    "porque_erroneas": {
+      "a": "Se extrae solo una cadena (el token).",
+      "c": "No realiza hashes.",
+      "d": "No modifica cabeceras."
+    },
+    "resumen": "RegExp Extractor captura valores de la respuesta (JWT en este caso)."
+  }
+},
+{
+  "pregunta": "Según el examen, ¿qué contiene el Access Log Sampler que se usó en JMeter?",
+  "opciones": {
+    "a": "Un listado de peticiones GET registradas previamente",
+    "b": "Tokens JWT para cada usuario",
+    "c": "La configuración del CSV Data Set",
+    "d": "Los encabezados HTTP genéricos"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Access Log Sampler",
+    "porque_correcta": "Se alimenta con un fichero de log para reproducir tráfico real.",
+    "porque_erroneas": {
+      "b": "Los tokens se obtienen en el login.",
+      "c": "Es otro elemento distinto.",
+      "d": "Los encabezados se añaden en Header Manager."
+    },
+    "resumen": "Access Log Sampler reenvía los GET capturados en un log."
+  }
+},
+{
+  "pregunta": "¿Cuál es el efecto de lanzar «ab -n 10 -c 5 192.168.56.110/»",
+  "opciones": {
+    "a": "Ejecuta 5 peticiones en total con 10 concurrencias",
+    "b": "Ejecuta 10 peticiones totales con 5 de ellas concurrentes",
+    "c": "Ejecuta menos de 10 peticiones, 5 de ellas concurrentes",
+    "d": "Ejecuta 10 peticiones con menos de 5 en concurrencia"
+  },
+  "respuesta": "b",
+  "explicacion": {
+    "concepto": "Interpretación de parámetros -n y -c",
+    "porque_correcta": "-n fija total (10) y -c fija concurrencia (5).",
+    "porque_erroneas": {
+      "a": "Invierte los significados.",
+      "c": "No refleja el comportamiento real.",
+      "d": "Los 5 hilos se mantienen hasta completar las 10 peticiones."
+    },
+    "resumen": "El banco valida que -n es total y -c es concurrencia simultánea."
+  }
+},
+{
+  "pregunta": "¿Dónde se encuentran los ficheros de configuración de Apache en Ubuntu Server?",
+  "opciones": {
+    "a": "/etc/apache2",
+    "b": "/etc/httpd/conf",
+    "c": "/usr/local/apache/conf",
+    "d": "C:/Apache24/conf"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Estructura de Apache en Debian/Ubuntu",
+    "porque_correcta": "El paquete apache2 coloca su configuración bajo /etc/apache2/.",
+    "porque_erroneas": {
+      "b": "Ruta de CentOS/RHEL.",
+      "c": "Correspondiente a instalaciones manuales.",
+      "d": "Ejemplo de Windows."
+    },
+    "resumen": "En Ubuntu la carpeta estándar es /etc/apache2."
+  }
+},
+{
+  "pregunta": "¿Qué comando con UFW deniega el acceso al puerto 3306/TCP en Ubuntu?",
+  "opciones": {
+    "a": "ufw deny 3306/tcp",
+    "b": "ufw block-port 3306",
+    "c": "ufw reject 3306",
+    "d": "ufw disable 3306"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Reglas UFW",
+    "porque_correcta": "La sintaxis oficial es ufw deny <puerto>/<protocolo>.",
+    "porque_erroneas": {
+      "b": "Subcomando inexistente.",
+      "c": "‘reject’ existe, pero sin puerto/protocolo así produce error.",
+      "d": "‘disable’ apaga todo el cortafuegos."
+    },
+    "resumen": "deny = bloquear; se añade el protocolo para especificar."
+  }
+},
+{
+  "pregunta": "Los cambios en firewalld hechos *sin* la opción --permanent permanecen tras reiniciar CentOS.",
+  "opciones": {
+    "a": "Verdadero",
+    "b": "Falso",
+    "c": "Solo si se ejecuta también --reload",
+    "d": "Depende de la zona por defecto"
+  },
+  "respuesta": "b",
+  "explicacion": {
+    "concepto": "firewalld runtime vs permanent",
+    "porque_correcta": "Sin --permanent las reglas solo viven en *runtime-config* y se pierden al reiniciar.",
+    "porque_erroneas": {
+      "a": "Afirma lo contrario.",
+      "c": "--reload no hace permanentes las reglas temporales.",
+      "d": "Independiente de la zona."
+    },
+    "resumen": "Para persistencia se necesita --permanent + --reload."
+  }
+},
+{
+  "pregunta": "Con cuatro discos de 5 GiB configurados en RAID 10, ¿qué capacidad útil aproximada queda disponible para datos?",
+  "opciones": {
+    "a": "5 GiB",
+    "b": "10 GiB",
+    "c": "15 GiB",
+    "d": "20 GiB"
+  },
+  "respuesta": "b",
+  "explicacion": {
+    "concepto": "Cálculo de capacidad RAID 10",
+    "porque_correcta": "RAID 10 combina espejo (50 % de la capacidad) y striping; con 4×5 GiB la capacidad = (n/2)×tamaño = 10 GiB.",
+    "porque_erroneas": {
+      "a": "Equivaldría a espejo triple, no RAID 10.",
+      "c": "RAID 10 nunca supera la mitad del total bruto.",
+      "d": "20 GiB sería RAID 0 sin redundancia."
+    },
+    "resumen": "RAID 10 sacrifica la mitad del espacio para redundancia."
+  }
+},
+{
+  "pregunta": "Ordena de más bajo a más alto los niveles lógicos en una virtualización completa.",
+  "opciones": {
+    "a": "Hardware anfitrión → Software anfitrión (hipervisor) → Hardware virtualizado → Software virtualizado",
+    "b": "Hardware anfitrión → Hardware virtualizado → Software anfitrión → Software virtualizado",
+    "c": "Software anfitrión → Hardware anfitrión → Supervisor → Software virtualizado → Hardware virtualizado",
+    "d": "Hardware anfitrión → Supervisor → Software anfitrión → Hardware virtualizado → Software virtualizado"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Jerarquía de abstracción VM",
+    "porque_correcta": "Primero el HW real, encima el hipervisor/host OS, luego expone HW virtual a la VM y finalmente el SO invitado.",
+    "porque_erroneas": {
+      "b": "Coloca HW virtual antes del hipervisor.",
+      "c": "Mezcla capas y altera el orden real.",
+      "d": "Intercambia supervisor y software anfitrión."
+    },
+    "resumen": "La VM ve HW virtual que emana del hipervisor sobre el HW real."
+  }
+},
+{
+  "pregunta": "¿Cuál de las siguientes afirmaciones describe correctamente a los contenedores frente a las máquinas virtuales?",
+  "opciones": {
+    "a": "Los contenedores reproducen entornos completos con interfaz gráfica igual que las máquinas virtuales.",
+    "b": "Los contenedores requieren más recursos que las máquinas virtuales al compartir kernel.",
+    "c": "Los contenedores virtualizan el hardware directamente.",
+    "d": "Los contenedores no reproducen una interfaz gráfica por defecto, a diferencia de las máquinas virtuales."
+  },
+  "respuesta": "d",
+  "explicacion": {
+    "concepto": "Diferencias contenedor vs VM",
+    "porque_correcta": "Por defecto un contenedor aísla procesos en modo texto; una VM sí puede incluir un escritorio completo.",
+    "porque_erroneas": {
+      "a": "Solo es cierto si se añade software extra (X11, VNC).",
+      "b": "Al compartir kernel consumen MENOS recursos.",
+      "c": "La virtualización de HW es labor del hipervisor, no del motor de contenedores."
+    },
+    "resumen": "Contenedor = aislamiento de procesos; VM = virtualización total con GUI opcional."
+  }
+},
+{
+  "pregunta": "Necesitas conectarte por SSH al servidor 192.168.10.2 con usuario ugr por el puerto 8088. ¿Qué comando es correcto?",
+  "opciones": {
+    "a": "ssh -p 8088 ugr@192.168.10.2",
+    "b": "ssh ugr@192.168.10.2:8088",
+    "c": "ssh 192.168.10.2 -u ugr -P 8088",
+    "d": "ssh ugr@192.168.10.2 -port 8088"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Sintaxis SSH",
+    "porque_correcta": "La opción -p especifica puerto TCP; formato usuario@host.",
+    "porque_erroneas": {
+      "b": "La notación host:puerto no es válida para ssh.",
+      "c": "-u y -P no existen (P mayúscula es proxy).",
+      "d": "-port no es opción reconocida."
+    },
+    "resumen": "ssh -p PORT user@host es la sintaxis estándar."
+  }
+},
+{
+  "pregunta": "Tras crear un array RAID 1 con mdadm usando /dev/sdb1 y /dev/sdc1, ¿qué dispositivo de bloque aparece normalmente para acceder al RAID?",
+  "opciones": {
+    "a": "/dev/md0",
+    "b": "/dev/md1",
+    "c": "/dev/mapper/raid1",
+    "d": "/dev/raid1"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Naming en mdadm",
+    "porque_correcta": "mdadm numera los arrays a partir de md0 salvo que se fuerce otro nombre.",
+    "porque_erroneas": {
+      "b": "md1 sería el segundo array creado.",
+      "c": "Los dispositivos mapeados LVM/DM no se usan aquí.",
+      "d": "No es una ruta válida por defecto."
+    },
+    "resumen": "El primer array se expone como /dev/md0."
+  }
+},
+{
+  "pregunta": "Para pasar a modo de mantenimiento (runlevel 1) desde un sistema systemd, ¿qué comando se utilizó en el examen?",
+  "opciones": {
+    "a": "systemctl isolate runlevel1.target",
+    "b": "systemctl single-user",
+    "c": "init 1",
+    "d": "systemctl rescue --force"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Target de rescate",
+    "porque_correcta": "‘isolate’ cambia inmediatamente al target indicado (equiv. single-user).",
+    "porque_erroneas": {
+      "b": "Comando inexistente.",
+      "c": "Funciona en SysV, no en systemd moderno.",
+      "d": "‘rescue’ existe pero no era la opción dada."
+    },
+    "resumen": "isolate runlevel1.target = single-user mode en systemd."
+  }
+},
+{
+  "pregunta": "¿Cuál es una ventaja principal de la dockerización frente al despliegue en máquinas virtuales completas?",
+  "opciones": {
+    "a": "Cada contenedor incluye su propio kernel, por lo que aísla mejor.",
+    "b": "El arranque de contenedores es mucho más rápido y consume menos RAM.",
+    "c": "Los contenedores permiten snapshots integrados de forma nativa.",
+    "d": "Docker elimina la necesidad de escalado horizontal."
+  },
+  "respuesta": "b",
+  "explicacion": {
+    "concepto": "Ventajas contenedores",
+    "porque_correcta": "Al compartir kernel, un contenedor se inicia en milisegundos y requiere pocos MB.",
+    "porque_erroneas": {
+      "a": "Compartir kernel es justo lo que reduce consumo.",
+      "c": "Snapshots no son característica core de Docker.",
+      "d": "El escalado horizontal sigue siendo necesario."
+    },
+    "resumen": "Ligereza y rapidez de arranque son las bazas de Docker."
+  }
+},
+{
+  "pregunta": "¿Cuál es el número mínimo de discos necesario para implementar RAID 5?",
+  "opciones": {
+    "a": "2",
+    "b": "3",
+    "c": "4",
+    "d": "5"
+  },
+  "respuesta": "b",
+  "explicacion": {
+    "concepto": "Requisitos de RAID 5",
+    "porque_correcta": "RAID 5 necesita al menos tres discos para poder distribuir la paridad.",
+    "porque_erroneas": {
+      "a": "Con dos discos no se puede calcular paridad distribuida.",
+      "c": "Es válido pero no el mínimo.",
+      "d": "Tampoco es el mínimo."
+    },
+    "resumen": "Mínimo 3 discos para RAID 5."
+  }
+},
+{
+  "pregunta": "¿Qué característica define mejor al RAID 0?",
+  "opciones": {
+    "a": "No ofrece redundancia y suma la capacidad de todos los discos.",
+    "b": "Duplica la información en todos los discos.",
+    "c": "Almacena paridad distribuida.",
+    "d": "Puede tolerar la caída de dos discos sin perder datos."
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "RAID 0 (striping)",
+    "porque_correcta": "El striping reparte bloques entre discos para maximizar velocidad y capacidad, sin tolerancia a fallos.",
+    "porque_erroneas": {
+      "b": "Eso describe RAID 1.",
+      "c": "Describe RAID 5/6.",
+      "d": "RAID 6 es el que tolera hasta dos fallos."
+    },
+    "resumen": "RAID 0 = rendimiento y capacidad, 0 redundancia."
+  }
+},
+{
+  "pregunta": "En un RAID 6 formado por 8 discos de 2 TB, ¿qué capacidad útil queda disponible?",
+  "opciones": {
+    "a": "10 TB",
+    "b": "12 TB",
+    "c": "14 TB",
+    "d": "16 TB"
+  },
+  "respuesta": "b",
+  "explicacion": {
+    "concepto": "Cálculo RAID 6",
+    "porque_correcta": "RAID 6 reserva el equivalente a dos discos para doble paridad: (8-2)×2 TB = 12 TB.",
+    "porque_erroneas": {
+      "a": "Correspondería a RAID 6 con 6 discos.",
+      "c": "Resultado incorrecto para 8-2 discos.",
+      "d": "16 TB sería RAID 0 (sin paridad)."
+    },
+    "resumen": "Capacidad = (N-2) × tamaño en RAID 6."
+  }
+},
+{
+  "pregunta": "¿Cuál de los siguientes niveles ofrece la mejor combinación de rendimiento en escrituras y redundancia para bases de datos transaccionales?",
+  "opciones": {
+    "a": "RAID 0",
+    "b": "RAID 1",
+    "c": "RAID 5",
+    "d": "RAID 10"
+  },
+  "respuesta": "d",
+  "explicacion": {
+    "concepto": "Rendimiento vs redundancia",
+    "porque_correcta": "RAID 10 combina striping y espejo: alta IOPS de escritura y tolera la caída de un disco por par espejado.",
+    "porque_erroneas": {
+      "a": "Sin redundancia.",
+      "b": "Redundante pero lento en escrituras concurrentes.",
+      "c": "Penalización de escritura por paridad."
+    },
+    "resumen": "RAID 10 es la opción recomendada para OLTP."
+  }
+},
+{
+  "pregunta": "¿Qué penalización de escritura (‘write penalty’) se asocia a RAID 5 en términos de operaciones de E/S por bloque lógico escrito?",
+  "opciones": {
+    "a": "2 lecturas + 2 escrituras",
+    "b": "1 lectura + 1 escritura",
+    "c": "4 lecturas + 4 escrituras",
+    "d": "0 lecturas + 2 escrituras"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Write penalty RAID 5",
+    "porque_correcta": "Para modificar un bloque hay que leer datos y paridad (2 lecturas) y luego escribir datos y paridad actualizada (2 escrituras).",
+    "porque_erroneas": {
+      "b": "Correspondería a RAID 1.",
+      "c": "Exagera operaciones.",
+      "d": "Faltan lecturas para recalcular paridad."
+    },
+    "resumen": "RAID 5 = 4 operaciones totales por escritura."
+  }
+},
+{
+  "pregunta": "¿Qué nivel RAID tolera la pérdida simultánea de *cualquier* dos discos sin perder datos?",
+  "opciones": {
+    "a": "RAID 5",
+    "b": "RAID 6",
+    "c": "RAID 0+1",
+    "d": "RAID 10 con 4 discos"
+  },
+  "respuesta": "b",
+  "explicacion": {
+    "concepto": "Redundancia doble",
+    "porque_correcta": "RAID 6 dispone de doble paridad distribuida y permite la caída de dos discos cualesquiera.",
+    "porque_erroneas": {
+      "a": "Solo tolera un disco.",
+      "c": "0+1 puede perder datos si fallan discos de espejos distintos.",
+      "d": "RAID 10 depende de qué discos fallen; no ‘cualquiera dos’."
+    },
+    "resumen": "La doble paridad de RAID 6 protege contra dos fallos simultáneos."
+  }
+},
+{
+  "pregunta": "¿Qué comando muestra los registros del servicio mon-raid a partir de ayer inclusive?",
+  "opciones": {
+    "a": "journalctl -u mon-raid --since=\"yesterday\"",
+    "b": "journalctl -f -u mon-raid",
+    "c": "journalctl -u mon-raid --since=\"today\"",
+    "d": "journalctl --unit=mon-raid"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Uso de journalctl",
+    "porque_correcta": "--since permite fijar fecha de inicio de los logs.",
+    "porque_erroneas": {
+      "b": "-f solo sigue en tiempo real.",
+      "c": "‘today’ mostrará solo el día actual.",
+      "d": "Sin --since muestra todo el histórico."
+    },
+    "resumen": "Para filtrar desde ayer: journalctl -u <servicio> --since=\"yesterday\"."
+  }
+},
+{
+  "pregunta": "¿Qué es Naemon?",
+  "opciones": {
+    "a": "Un monitor de infraestructura derivado de Nagios",
+    "b": "Un hipervisor de virtualización ligera",
+    "c": "Un orquestador de contenedores",
+    "d": "Un editor de textos en consola"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Familia Nagios",
+    "porque_correcta": "Naemon es un fork moderno de Nagios Core.",
+    "porque_erroneas": {
+      "b": "No se usa para VMs.",
+      "c": "No orquesta contenedores.",
+      "d": "Nada que ver con edición de texto."
+    },
+    "resumen": "Naemon = motor de monitorización compatible con Nagios."
+  }
+},
+{
+  "pregunta": "¿Qué archivos hay que editar para ajustar los parámetros de Zabbix agente y servidor?",
+  "opciones": {
+    "a": "/etc/zabbix/zabbix_agentd.conf y /etc/zabbix/zabbix_server.conf",
+    "b": "/etc/zabbix/web/zabbix.conf.php",
+    "c": "/etc/httpd/conf.d/zabbix.conf",
+    "d": "/etc/snmp/snmpd.conf y /etc/zabbix_server.conf"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Ficheros de configuración Zabbix",
+    "porque_correcta": "Son los ficheros de servicio que lee systemd.",
+    "porque_erroneas": {
+      "b": "Ese PHP es solo para la GUI.",
+      "c": "Configura Apache, no Zabbix.",
+      "d": "snmpd no se usa en agente Zabbix por defecto."
+    },
+    "resumen": "Cada demonio tiene su .conf específico bajo /etc/zabbix/."
+  }
+},
+{
+  "pregunta": "En la interfaz web de Zabbix, ¿cómo se añade un host nuevo?",
+  "opciones": {
+    "a": "Configuration → Hosts → Create host",
+    "b": "Monitoring → Latest data → Add host",
+    "c": "Administration → Hosts → New",
+    "d": "Inventory → Hosts → Register"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Flujo de alta en Zabbix",
+    "porque_correcta": "La sección Configuration contiene los objetos inventariables.",
+    "porque_erroneas": {
+      "b": "Latest data es solo para ver métricas.",
+      "c": "‘Administration’ gestiona permisos.",
+      "d": "‘Inventory’ rellena datos una vez creado."
+    },
+    "resumen": "Alta de un host: Configuration → Hosts → Create host."
+  }
+},
+{
+  "pregunta": "¿Para qué se usa principalmente el comando grep?",
+  "opciones": {
+    "a": "Filtrar texto que coincide con un patrón",
+    "b": "Monitorizar procesos en segundo plano",
+    "c": "Editar archivos de configuración",
+    "d": "Crear archivos comprimidos"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "grep básico",
+    "porque_correcta": "grep busca líneas que contienen la expresión regular indicada.",
+    "porque_erroneas": {
+      "b": "Eso sería top/htop.",
+      "c": "Editar se hace con vi/nano.",
+      "d": "Para comprimir usamos tar/gzip."
+    },
+    "resumen": "grep = filtro de líneas por patrón."
+  }
+},
+{
+  "pregunta": "En una arquitectura de microservicios, ¿cómo se comunican típicamente los servicios entre sí?",
+  "opciones": {
+    "a": "Mediante API HTTP/REST o colas de mensajes",
+    "b": "Compartiendo la misma base de datos monolítica",
+    "c": "A través de llamadas RPC BIOS",
+    "d": "Mediante memoria compartida del kernel"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Comunicación microservicios",
+    "porque_correcta": "REST y MQ (Rabbit, Kafka) son patrones usuales.",
+    "porque_erroneas": {
+      "b": "Se evita BD monolítica.",
+      "c": "No existe RPC BIOS.",
+      "d": "La memoria compartida no es práctica entre contenedores distribuidos."
+    },
+    "resumen": "API o cola = acoplamiento débil entre servicios."
+  }
+},
+{
+  "pregunta": "Antes de lanzar JMeter se indicó arrancar la aplicación con…",
+  "opciones": {
+    "a": "docker-compose up",
+    "b": "docker build .",
+    "c": "systemctl start microservice",
+    "d": "npm start"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Arranque stack Docker",
+    "porque_correcta": "docker-compose orquesta API + Mongo para pruebas.",
+    "porque_erroneas": {
+      "b": "build solo compila la imagen.",
+      "c": "La app corre en contenedor, no como servicio systemd.",
+      "d": "npm start se ejecuta dentro del contenedor."
+    },
+    "resumen": "Compose pone en marcha todos los contenedores dependientes."
+  }
+},
+{
+  "pregunta": "¿Qué es una métrica (benchmark metric) en el contexto de un benchmark?",
+  "opciones": {
+    "a": "El valor cuantitativo que se mide para comparar rendimiento",
+    "b": "El nombre del test que se va a ejecutar",
+    "c": "El hardware en el que se ejecuta la prueba",
+    "d": "La herramienta que monitoriza el benchmark"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Concepto de métrica",
+    "porque_correcta": "La métrica es el resultado: tiempo, IOPS, FPS…",
+    "porque_erroneas": {
+      "b": "El nombre del test no es la métrica.",
+      "c": "Eso es el banco de pruebas.",
+      "d": "La herramienta no es la métrica."
+    },
+    "resumen": "La métrica es lo que cuantifica el resultado."
+  }
+},
+{
+  "pregunta": "¿Cuál es el primer aspecto a definir antes de ejecutar un benchmark según la guía?",
+  "opciones": {
+    "a": "El objetivo y la métrica a evaluar",
+    "b": "El color del entorno de escritorio",
+    "c": "La versión exacta del navegador",
+    "d": "La marca del cable Ethernet"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Planificación de benchmarks",
+    "porque_correcta": "Sin objetivo y métrica claros, el resultado carece de sentido.",
+    "porque_erroneas": {
+      "b": "Irrelevante.",
+      "c": "Solo afecta a pruebas web específicas.",
+      "d": "No incide en la validez."
+    },
+    "resumen": "Define qué medir y por qué antes de lanzar pruebas."
+  }
+},
+{
+  "pregunta": "En el script pruebaEntorno.sh, cambiar la variable SERVER sirve para…",
+  "opciones": {
+    "a": "Conmutar entre pruebas locales y contra el servidor remoto",
+    "b": "Cambiar la base de datos usada",
+    "c": "Aumentar el número de hilos en JMeter",
+    "d": "Seleccionar otra imagen Docker"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Script de entorno",
+    "porque_correcta": "SERVER define la URL base del API bajo prueba.",
+    "porque_erroneas": {
+      "b": "La BD se define en docker-compose.",
+      "c": "Los hilos se configuran en JMeter.",
+      "d": "La imagen no depende de esa variable."
+    },
+    "resumen": "SERVER apunta al host donde vive la API."
+  }
+},
+{
+  "pregunta": "¿En qué puerto expone el frontend la aplicación de microservicio?",
+  "opciones": {
+    "a": "3000",
+    "b": "80",
+    "c": "8080",
+    "d": "27017"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Puertos del stack",
+    "porque_correcta": "El contenedor Node escucha en 3000 y se mapea a ese puerto del host.",
+    "porque_erroneas": {
+      "b": "80 es HTTP estándar pero no usado aquí.",
+      "c": "8080 suele ser proxy, no en este ejemplo.",
+      "d": "27017 es MongoDB."
+    },
+    "resumen": "Frontend → puerto 3000."
+  }
+},
+{
+  "pregunta": "¿Con qué utilidad se modifican dinámicamente los parámetros del kernel (p. ej. tcp_syncookies)?",
+  "opciones": {
+    "a": "sysctl",
+    "b": "modprobe",
+    "c": "lsmod",
+    "d": "systemctl"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Ajuste runtime kernel",
+    "porque_correcta": "sysctl lee/escribe /proc/sys en caliente.",
+    "porque_erroneas": {
+      "b": "modprobe carga módulos.",
+      "c": "lsmod solo lista.",
+      "d": "systemctl administra servicios."
+    },
+    "resumen": "sysctl = interfaz a /proc/sys."
+  }
+},
+{
+  "pregunta": "El esquema de autenticación de la API usa…",
+  "opciones": {
+    "a": "Token JWT tipo Bearer",
+    "b": "Cookies de sesión PHP",
+    "c": "Cabeceras Basic Auth en claro",
+    "d": "OAuth 2.0 con PKCE"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Auth API",
+    "porque_correcta": "POST /auth/login devuelve un JWT que se pasa como Bearer.",
+    "porque_erroneas": {
+      "b": "No se usan cookies.",
+      "c": "Basic Auth no cifrado no se emplea.",
+      "d": "OAuth no se implementó."
+    },
+    "resumen": "JWT Bearer simplifica la prueba con JMeter."
+  }
+},
+{
+  "pregunta": "Para hacer persistentes los cambios aplicados con sysctl se deben guardar en…",
+  "opciones": {
+    "a": "/etc/sysctl.conf o /etc/sysctl.d/*.conf",
+    "b": "/etc/rc.local",
+    "c": "/etc/profile",
+    "d": "/var/log/sysctl.log"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Persistencia de parámetros kernel",
+    "porque_correcta": "Los ficheros de sysctl se leen al arranque.",
+    "porque_erroneas": {
+      "b": "rc.local es un truco viejo, no recomendado.",
+      "c": "profile se ejecuta por usuario.",
+      "d": "Solo sería un log."
+    },
+    "resumen": "Guarda las claves en sysctl.conf para reinicios."
+  }
+},
+{
+  "pregunta": "¿Qué comandos pueden mostrar la carga media del sistema? (elige la opción correcta según el examen)",
+  "opciones": {
+    "a": "uptime",
+    "b": "cat /proc/loadavg",
+    "c": "top",
+    "d": "Todas las anteriores"
+  },
+  "respuesta": "d",
+  "explicacion": {
+    "concepto": "Load average",
+    "porque_correcta": "Las tres fuentes exponen la métrica.",
+    "porque_erroneas": {
+      "a": "Correcta pero no única.",
+      "b": "Correcta pero no única.",
+      "c": "Correcta pero no única."
+    },
+    "resumen": "Las tres órdenes muestran el load average."
+  }
+},
+{
+  "pregunta": "¿Cuál de las siguientes listas agrupa exclusivamente herramientas de monitorización generales?",
+  "opciones": {
+    "a": "Naemon, Zabbix, Munin y Ganglia",
+    "b": "JMeter, ab, iperf y stress",
+    "c": "Docker, Podman, LXC y systemd-nspawn",
+    "d": "Git, SVN, Mercurial y CVS"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Catálogo de monitores",
+    "porque_correcta": "Son suites de monitorización tradicionales.",
+    "porque_erroneas": {
+      "b": "Son herramientas de carga o red.",
+      "c": "Son contenedores.",
+      "d": "Sistemas de control de versiones."
+    },
+    "resumen": "Lista ‘a’ agrupa monitores de infraestructura."
+  }
+},
+{
+  "pregunta": "¿Qué hace el comando «ansible webservers -m ping»?",
+  "opciones": {
+    "a": "Ejecuta el módulo ping en todos los hosts del grupo webservers",
+    "b": "Hace ping ICMP desde el host local a webservers",
+    "c": "Arranca el servicio apache2 en webservers",
+    "d": "Comprueba la versión de Ansible en los controlados"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Ansible ad-hoc",
+    "porque_correcta": "El módulo ping verifica conectividad y autenticación.",
+    "porque_erroneas": {
+      "b": "No usa ICMP local, sino SSH+Python.",
+      "c": "Sería ansible webservers -m service -a 'name=httpd state=started'.",
+      "d": "La versión se obtendría con setup."
+    },
+    "resumen": "ansible <grupo> -m ping = prueba rápida de reachability."
+  }
+},
+{
+  "pregunta": "¿Qué comando de Phoronix Test Suite lista las pruebas recomendadas disponibles?",
+  "opciones": {
+    "a": "phoronix-test-suite list-recommended-tests",
+    "b": "phoronix-test-suite list-recommended-test",
+    "c": "phoronix-test-suite list-tests",
+    "d": "phoronix list-recommended-tests"
+  },
+  "respuesta": "b",
+  "explicacion": {
+    "concepto": "PTS CLI",
+    "porque_correcta": "La opción singular ‘test’ es la que muestra el catálogo recomendado.",
+    "porque_erroneas": {
+      "a": "La ‘s’ extra no existe en la sub-comando oficial.",
+      "c": "Muestra todas las pruebas, no solo las recomendadas.",
+      "d": "Falta ‘test-suite’ en el comando."
+    },
+    "resumen": "La sintaxis exacta incluye ‘test’ en singular."
+  }
+},
+{
+  "pregunta": "Según el examen, la petición POST de la API se usa para…",
+  "opciones": {
+    "a": "Autenticar al usuario y obtener el token JWT",
+    "b": "Leer el listado de alumnos",
+    "c": "Actualizar los datos del alumno",
+    "d": "Registrar un nuevo alumno"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Flujo API auth",
+    "porque_correcta": "POST /auth/login devuelve el JWT necesario.",
+    "porque_erroneas": {
+      "b": "Leer alumnos usa GET con token.",
+      "c": "No implementado en la práctica.",
+      "d": "No implementado."
+    },
+    "resumen": "La operación POST inicial sirve para autenticarse."
+  }
+},
+{
+  "pregunta": "¿Con qué extensión se guardan normalmente los playbooks de Ansible?",
+  "opciones": {
+    "a": ".yml",
+    "b": ".json",
+    "c": ".ini",
+    "d": ".cfg"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Formato de playbooks",
+    "porque_correcta": "Ansible usa YAML; la convención es terminar el nombre en .yml o .yaml.",
+    "porque_erroneas": {
+      "b": "Ansible puede leer JSON, pero no se usa para playbooks manuales.",
+      "c": ".ini se usa para ficheros de inventario simples.",
+      "d": ".cfg es para ansible.cfg."
+    },
+    "resumen": "Playbooks = archivos YAML, extensión .yml."
+  }
+},
+{
+  "pregunta": "¿Qué hace la opción --check al ejecutar «ansible-playbook site.yml --check»?",
+  "opciones": {
+    "a": "Realiza una simulación (dry-run) sin cambiar nada en los nodos",
+    "b": "Ejecuta el playbook solo en los hosts marcados como check",
+    "c": "Habilita la salida en modo depuración",
+    "d": "Reinicia el servicio sshd antes de cada tarea"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Modo simulación Ansible",
+    "porque_correcta": "--check muestra qué cambiaría el playbook sin aplicarlo.",
+    "porque_erroneas": {
+      "b": "No existe tal etiqueta especial.",
+      "c": "-vvv es el modo verbose, no --check.",
+      "d": "No afecta servicios."
+    },
+    "resumen": "Modo dry-run útil para verificar efectos antes de aplicarlos."
+  }
+},
+{
+  "pregunta": "¿Qué opción añade una rich-rule en firewalld?",
+  "opciones": {
+    "a": "--add-rich-rule",
+    "b": "--add-rule-rich",
+    "c": "--rich-add-rule",
+    "d": "--add-advanced-rule"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Rich rules firewalld",
+    "porque_correcta": "La sintaxis oficial es firewall-cmd --add-rich-rule='rule …'.",
+    "porque_erroneas": {
+      "b": "Orden incorrecto de palabras.",
+      "c": "No existe en CLI.",
+      "d": "Opción inventada."
+    },
+    "resumen": "--add-rich-rule es la orden específica para reglas complejas."
+  }
+},
+{
+  "pregunta": "¿Qué opción de ssh-keygen permite cambiar la passphrase de una clave existente?",
+  "opciones": {
+    "a": "-p",
+    "b": "-c",
+    "c": "-P",
+    "d": "-f"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Gestión de claves SSH",
+    "porque_correcta": "ssh-keygen -p solicita la antigua passphrase y permite definir una nueva.",
+    "porque_erroneas": {
+      "b": "-c cambia el comentario de la clave.",
+      "c": "-P proporciona la passphrase actual en línea de comandos.",
+      "d": "-f indica el fichero clave."
+    },
+    "resumen": "-p = change passphrase."
+  }
+},
+{
+  "pregunta": "¿En qué puerto HTTP escucha Prometheus por defecto?",
+  "opciones": {
+    "a": "9090",
+    "b": "3000",
+    "c": "19090",
+    "d": "9093"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Prometheus default port",
+    "porque_correcta": "Al arrancar, el servidor de métricas se expone en http://localhost:9090/.",
+    "porque_erroneas": {
+      "b": "3000 es Grafana.",
+      "c": "19090 se usa a veces para instancias externas.",
+      "d": "9093 corresponde al Alertmanager por defecto."
+    },
+    "resumen": "Prometheus = puerto 9090."
+  }
+},
+{
+  "pregunta": "¿Qué comando muestra los registros stdout/err de un contenedor Docker en ejecución llamado web?",
+  "opciones": {
+    "a": "docker logs web",
+    "b": "docker ps -l web",
+    "c": "docker inspect web",
+    "d": "docker exec web journalctl"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Inspección de contenedores",
+    "porque_correcta": "docker logs imprime la salida estándar almacenada del contenedor.",
+    "porque_erroneas": {
+      "b": "docker ps solo lista contenedores.",
+      "c": "inspect muestra metadatos JSON.",
+      "d": "journalctl no está dentro por defecto."
+    },
+    "resumen": "docker logs <nombre/ID> para ver la salida del contenedor."
+  }
+},
+{
+  "pregunta": "¿Qué URL abre el panel por defecto de Grafana después de instalarlo localmente?",
+  "opciones": {
+    "a": "http://localhost:3000",
+    "b": "http://localhost:9090",
+    "c": "http://localhost:8080",
+    "d": "https://grafana.local"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Grafana default port",
+    "porque_correcta": "Grafana Server se enlaza por defecto al puerto 3000.",
+    "porque_erroneas": {
+      "b": "9090 es Prometheus.",
+      "c": "8080 se usa en proxies, no en Grafana core.",
+      "d": "No configura TLS ni dominio local por defecto."
+    },
+    "resumen": "Acceso inicial: http://localhost:3000"
+  }
+},
+{
+  "pregunta": "En un playbook de Ansible, ¿qué construcción repite un bloque de tareas para cada elemento de una lista?",
+  "opciones": {
+    "a": "with_items",
+    "b": "loop_until",
+    "c": "when",
+    "d": "block_rescue"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Bucles en Ansible",
+    "porque_correcta": "with_items itera sobre cada valor del listado.",
+    "porque_erroneas": {
+      "b": "loop_until espera hasta que se cumpla una condición.",
+      "c": "when es una condición, no un bucle.",
+      "d": "block_rescue gestiona errores."
+    },
+    "resumen": "Iteración típica = with_items."
+  }
+},
+{
+  "pregunta": "En el fichero prometheus.yml, la etiqueta ‘job:’ dentro de scrape_configs se usa para…",
+  "opciones": {
+    "a": "Agrupar uno o varios targets bajo un mismo nombre lógico",
+    "b": "Definir la consulta PromQL que se ejecutará",
+    "c": "Indicar el intervalo global de scrapes",
+    "d": "Habilitar autenticación básica en el endpoint"
+  },
+  "respuesta": "a",
+  "explicacion": {
+    "concepto": "Prometheus scrape_configs",
+    "porque_correcta": "Cada job agrupa los targets (hosts:puerto) con configuración común.",
+    "porque_erroneas": {
+      "b": "Las consultas se hacen en PromQL aparte, no en scrape_configs.",
+      "c": "El intervalo va en ‘scrape_interval’.",
+      "d": "La auth se define con basic_auth, no con job."
+    },
+    "resumen": "‘job’ etiqueta y organiza los endpoints a scrapear."
+  }
+}
+
+
+
+]
